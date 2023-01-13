@@ -12,9 +12,8 @@ function App() {
   const { currentUser } = useContext(AuthContext);
 
   const ProtectedRoute = ({ children }) => {
-    debugger
     if (!currentUser) {
-      return <Navigate to="/" />;
+      return <Navigate to="/login" />;
     }
 
     return children

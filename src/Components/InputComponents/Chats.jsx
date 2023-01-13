@@ -1,8 +1,8 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { ChatContext } from "../context/ChatContext";
-import { db } from "../context/firebase";
+import { AuthContext } from "../../Context/AuthContext";
+import { ChatContext } from "../../Context/ChatContext";
+import { db } from "../../Context/firebase";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
@@ -23,7 +23,7 @@ const Chats = () => {
 
     currentUser.uid && getChats();
   }, [currentUser.uid]);
-
+console.log(chats)
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
   };

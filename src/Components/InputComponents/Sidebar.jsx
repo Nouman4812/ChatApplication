@@ -4,8 +4,6 @@
 import { BsSearch } from "react-icons/bs";
 import { db } from "../../Context/firebase";
 import { AuthContext } from "../../Context/AuthContext";
-import { signOut } from "firebase/auth"
-import { auth } from "../../Context/firebase"
 import React, { useState, useContext, useEffect } from "react";
 import { ChatContext } from "../../Context/ChatContext";
 import { onSnapshot } from "firebase/firestore";
@@ -56,7 +54,6 @@ function Sidebar() {
                 : user.uid + currentUser.uid;
         try {
             const res = await getDoc(doc(db, "chats", combinedId));
-
             if (!res.exists()) {
                 //create a chat in chats collection
                 await setDoc(doc(db, "chats", combinedId), { messages: [] });
@@ -87,15 +84,30 @@ function Sidebar() {
     };
     useEffect(() => {
         const getChats = () => {
-            const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
-                setChats(doc.data());
-            });
+            const unsub = onSnapshot(collection(db, "users"), querySnapshot => {
 
-            return () => {
-                unsub();
-            };
+                const data = []
+                querySnapshot.forEach((doc) => {
+                    data.push(doc.data())
+                });
+                console.log("Chats: ", data);
+                setChats(data)
+                return () => {
+                    unsub();
+                };
+            })
+            // const getChats = () => {
+            //     const unsub = onSnapshot(doc(db, "users"), (doc) => {
+
+
+            //         setChats(doc.data());
+            //     });
+
+            //     return () => {
+            //         unsub();
+            //     };
         };
-
+        // })
         currentUser.uid && getChats();
     }, [currentUser.uid]);
 
@@ -107,13 +119,11 @@ function Sidebar() {
         <div id='sidebar'>
             <div className="col-lg-12 leftside">
                 <div className="chatstext">Chats
-                    <img src={currentUser.photoURL} alt="" width={40} height={40}/>
-                    <span>{currentUser.displayName}</span><button
-                        type="button"
-                        class="btn btn-danger logoutbutton"
-                        onClick={() => signOut(auth)}>LogOut</button></div>
+                    <img src={currentUser.photoURL} alt="" className="usericonrightlower" />
+                    <span className="upusername">{currentUser.displayName}</span>
+                </div>
                 <div class="wrapper">
-                    <BsSearch className="icon" />
+                    <BsSearch className="icon" onKeyDown={handleKey} />
                     <input class="form-control searchbar"
                         type="text"
                         placeholder="Find a User"
@@ -128,7 +138,6 @@ function Sidebar() {
                         <div className="userChat" onClick={handleSelect}>
                             <img src={user.photoURL} alt="" />
                             <div className="userChatInfo">
-                                <span>{user.displayName}</span>
                             </div>
                         </div>
                     )}
@@ -136,20 +145,23 @@ function Sidebar() {
                 <div className="Recenttext">Recent</div>
                 <div className="lefticon col-md-12">
                     <div className="chatusericon left">
-                        {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => (
-                            <><div className="iconspanp"
-                                key={chat[0]}
-                                onClick={() => handleSelect2(chat[1].userInfo)}
+                        {chats.map((chat, index) => (
+
+                            <>
+                            <div className="iconspanp"
+                                key={index}
+                                onClick={() => handleSelect2(chat)}
                             >
-                                <img src={chat[1].userInfo.photoURL} alt="" className="usericon" id='cursersetting' />
+                                <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
                                 <div className="lowerleftnameabout">
-                                    <span className="lowerleftname" >{chat[1].userInfo.displayName}</span>
-                                    <p className="lowerabout" >{chat[1].lastMessage?.text}</p>
+                                    <span className="lowerleftname" >{chat.displayName}</span>
+                                    <p className="lowerabout" >{chat.lastMessage?.text}</p>
                                 </div>
                             </div>
                                 {/* <div>   <span className='timeleft'>05 min</span></div> */}
                             </>
                         ))}
+
                     </div>
                 </div>
             </div>

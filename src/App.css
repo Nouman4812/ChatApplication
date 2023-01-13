@@ -94,7 +94,9 @@ body {
 
   margin-top: 2%;
 }
-
+.upusername{
+  font-size: 1rem !important;
+}
 /* /////////////////////////////////////////////// */
 /* .container2{
     display: flex;
@@ -142,11 +144,12 @@ body {
   margin-left: 0%;
 
 
+
 }
 
 .lowerleftname {
   font-size: 1.1rem;
-  margin-left: 1.7%;
+
   margin-top: 1%;
 }
 
@@ -159,9 +162,9 @@ body {
 }
 
 .lowerleftnameabout {
-  margin-left: 3%;
+  
   margin-top: 0%;
-  padding-bottom: 3%;
+  padding-bottom: 5%;
 
 
 
@@ -179,7 +182,9 @@ body {
 }
 
 .iconspanp {
-  display: flex;
+ 
+
+
 }
 
 /* ////////////////////////////////////////////// */
@@ -251,22 +256,22 @@ body {
 
 .msg {
   font-size: 1.8rem;
-  margin-left: 2rem;
+  margin-left: 1rem;
   cursor: pointer;
   color: rgb(114, 105, 239);
-  margin-top: 0.1rem;
+  margin-top: 0.3rem;
 
 
 }
 
 .emoji {
-  font-size: 1.4rem;
-  color: white;
-  background-color: rgb(114, 105, 239);
+  font-size: 1.9rem;
+  color: rgb(114, 105, 239);
+  background-color: rgb(255, 255, 255);
   border-radius: 1rem;
-  border: black;
+  border:transparent;
   cursor: pointer;
-  margin-left: -6rem;
+  margin-left: -8rem;
   margin-top: 0.3rem;
 
 }
@@ -292,7 +297,7 @@ body {
 .message {
   display: flex;
   flex-direction: column;
-  height: 42rem;
+  /* height: 42rem; */
 }
 
 .icontext {
@@ -313,28 +318,32 @@ body {
   display: flex;
   flex-direction: column;
   margin-left:3rem;
-
+  justify-items: auto;
+margin-top: 3rem;
   color: white;
   position: relative;
   background-color: rgb(114, 105, 239);
-  padding: 5%;
-  border-radius: 0.5rem 0.5rem 0.5rem 0;
-  border: 0.1rem solid rgb(114, 105, 239);
+  width: 10% !important;
+  display: flex;
+  /* justify-content: ; */
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  /* border: 0.1rem solid rgb(114, 105, 239); */
 }
 
 .chatdiv:after {
-  content: "";
+  /* content: "";
   position: absolute;
   border: 0.7rem solid transparent;
   border-top: 0.6rem solid rgb(114, 105, 239);
   border-left: none;
   bottom: -1.4rem;
   left: -0.1rem;
+  justify-items: auto; */
 }
 
 
 .msgtext {
-  margin-left: 10%;
+  margin-left: 0%;
 }
 
 .time {
@@ -352,6 +361,7 @@ body {
 .chatusericon {
 
   display: flex;
+  flex-direction: column;
 }
 
 .usericon {

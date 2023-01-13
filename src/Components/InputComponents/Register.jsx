@@ -35,12 +35,14 @@ function Register() {
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                         //Update profile
                         await updateProfile(res.user, {
 
                             uid: res.user.uid,
                             displayName,
                             photoURL: downloadURL,
                         });
+                          //create user on firesto
                         await setDoc(doc(db, "users", res.user.uid),
                             {
                                 displayName,
@@ -48,6 +50,7 @@ function Register() {
                                 photoURL: downloadURL,
 
                             });
+                                        //create empty user chats on firestore
                         await setDoc(doc(db, "userChats", res.user.uid), {});
                         navigate("/")
                     });
@@ -75,13 +78,13 @@ function Register() {
                         <div class="d-grid">
                             <button class="btn btn-primary loginButton" type="submit">Sign Up</button>
                         </div>
-                        {/* {err && <spna>Something went wrong</spna>} */}
+                        {err && <spna>Something went wrong</spna>}
                     </form>
                     <div className='text'>
                         <p>Don't have an account?</p>
                     </div>
                     <div className='text1'>
-                        <span><Link to="/register">Login</Link></span>
+                        <span><Link to="/login">Login</Link></span>
                     </div>
                 </div>
             </div>
