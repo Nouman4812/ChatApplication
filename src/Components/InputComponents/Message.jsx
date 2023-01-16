@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { ChatContext } from "../../Context/ChatContext";
-import { senderId } from "../../Context/firebase"
 
 function Message({ message }) {
     const { currentUser } = useContext(AuthContext);

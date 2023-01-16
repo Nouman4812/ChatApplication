@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import { BsEmojiSmile, BsThreeDots, BsCaretRightSquareFill, BsPaperclip } from "react-icons/bs";
+import { BsEmojiSmile, BsCaretRightSquareFill, BsPaperclip } from "react-icons/bs";
 import Messages from "./Messages";
 import Message from "./Message"
 import Sidebar from "./Sidebar";
-import { useContext, useEffect, useState } from 'react';
+import { useContext,  useState } from 'react';
 import { AuthContext } from "../../Context/AuthContext";
 import { signOut } from "firebase/auth"
 import { auth } from "../../Context/firebase"
@@ -14,7 +14,6 @@ import {
   serverTimestamp,
   Timestamp,
   updateDoc,
-  onSnapshot
 } from "firebase/firestore"
 import { db, storage } from "../../Context/firebase"
 import { v4 as uuid } from "uuid";
@@ -93,9 +92,8 @@ function Randerpage() {
             class="btn btn-danger logoutbutton"
             onClick={() => signOut(auth)}>LogOut</button>
         </div>
-        <Message message={data.user} />
         <div>
-          <div className="mechat">
+          <div >
             <Messages />
           </div>
         </div>
@@ -108,10 +106,15 @@ function Randerpage() {
             value={text} />
           <BsEmojiSmile
             className="emoji" />
-          <BsPaperclip
+          {/* <BsPaperclip
             className="msg"
-            src={img} alt=""
-          />
+           
+          /> */}
+           <input style={{ display: "none" }} type="file" id="file" />
+                      <label  className="label" htmlFor="file">
+                             <img src={''} alt="" />
+                        <span><BsPaperclip className="msg"/></span>
+                            </label>
           <BsCaretRightSquareFill
             className="msg"
             onClick={handleSend}

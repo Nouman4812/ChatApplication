@@ -18,6 +18,7 @@ import {
     serverTimestamp,
     getDoc,
 } from "firebase/firestore";
+import LoginScreen from "./LoginScreen";
 
 function Sidebar() {
     const [chats, setChats] = useState([]);
@@ -84,9 +85,10 @@ function Sidebar() {
     };
     useEffect(() => {
         const getChats = () => {
-            const unsub = onSnapshot(collection(db, "users"), querySnapshot => {
+            const unsub = onSnapshot(collection(db, "users" ), querySnapshot => {
 
                 const data = []
+              
                 querySnapshot.forEach((doc) => {
                     data.push(doc.data())
                 });
@@ -136,7 +138,7 @@ function Sidebar() {
                     {err && <span>User not found!</span>}
                     {user && (
                         <div className="userChat" onClick={handleSelect}>
-                            <img src={user.photoURL} alt="" />
+                            <img  className="upleft" src={user.photoURL} alt="" />
                             <div className="userChatInfo">
                             </div>
                         </div>
