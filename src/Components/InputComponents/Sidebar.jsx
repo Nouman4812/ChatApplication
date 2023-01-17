@@ -1,6 +1,3 @@
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faSearch } from '@fortawesome/free-solid-svg-icons';
-// import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { BsSearch } from "react-icons/bs";
 import { db } from "../../Context/firebase";
 import { AuthContext } from "../../Context/AuthContext";
@@ -18,7 +15,6 @@ import {
     serverTimestamp,
     getDoc,
 } from "firebase/firestore";
-import LoginScreen from "./LoginScreen";
 
 function Sidebar() {
     const [chats, setChats] = useState([]);
@@ -85,10 +81,10 @@ function Sidebar() {
     };
     useEffect(() => {
         const getChats = () => {
-            const unsub = onSnapshot(collection(db, "users" ), querySnapshot => {
+            const unsub = onSnapshot(collection(db, "users"), querySnapshot => {
 
                 const data = []
-              
+
                 querySnapshot.forEach((doc) => {
                     data.push(doc.data())
                 });
@@ -108,8 +104,9 @@ function Sidebar() {
             //     return () => {
             //         unsub();
             //     };
+            // })
         };
-        // })
+
         currentUser.uid && getChats();
     }, [currentUser.uid]);
 
@@ -138,28 +135,29 @@ function Sidebar() {
                     {err && <span>User not found!</span>}
                     {user && (
                         <div className="userChat" onClick={handleSelect}>
-                            <img  className="upleft" src={user.photoURL} alt="" />
+                            <img className="upleft" src={user.photoURL} alt="" />
                             <div className="userChatInfo">
                             </div>
                         </div>
                     )}
                 </div>
+                {/* ///////////////////////////////////////// */}
                 <div className="Recenttext">Recent</div>
                 <div className="lefticon col-md-12">
-                    <div className="chatusericon left">
-                        {chats.map((chat, index) => (
+                    <div className="chatusericon left chats">
 
+                        {chats.map((chat, index) => (
                             <>
-                            <div className="iconspanp"
-                                key={index}
-                                onClick={() => handleSelect2(chat)}
-                            >
-                                <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
-                                <div className="lowerleftnameabout">
-                                    <span className="lowerleftname" >{chat.displayName}</span>
-                                    <p className="lowerabout" >{chat.lastMessage?.text}</p>
+                                <div className="iconspanp userChat"
+                                    key={chat[0]}
+                                    onClick={() => handleSelect2(chat)}
+                                >
+                                    <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
+                                    <div className="lowerleftnameabout userChatInfo">
+                                        <span className="lowerleftname" >{chat.displayName}</span>
+                                        <p className="lowerabout" >{chat.lastMessage?.text}</p>
+                                    </div>
                                 </div>
-                            </div>
                                 {/* <div>   <span className='timeleft'>05 min</span></div> */}
                             </>
                         ))}

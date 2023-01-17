@@ -342,7 +342,7 @@ body {
   border: 0.1rem solid rgb(114, 105, 239);
   margin-right: 3rem;
 }
-.chatdiv:after { 
+/* .chatdiv:after {  */
   /* content: "";
   position: absolute;
   border: 0.7rem solid transparent;
@@ -351,7 +351,7 @@ body {
   bottom: -1.4rem;
   left: -0.1rem;
   justify-items: auto; */
-}
+/* } */
 
 
 .msgtext {

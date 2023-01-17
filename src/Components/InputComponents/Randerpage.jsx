@@ -7,7 +7,9 @@ import Sidebar from "./Sidebar";
 import { useContext,  useState } from 'react';
 import { AuthContext } from "../../Context/AuthContext";
 import { signOut } from "firebase/auth"
-import { auth } from "../../Context/firebase"
+import { auth } from "../../Context/firebase";
+import Emoji from "./emojis"
+import EmojiPicker from 'emoji-picker-react';
 import {
   arrayUnion,
   doc,
@@ -21,21 +23,22 @@ import { ChatContext } from "../../Context/ChatContext";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 function Randerpage() {
   const { data } = useContext(ChatContext);
+
   ///////////////////////////
   const [text, setText] = useState("");
-  const [img, setImg] = useState(null);
+  const [Img, setImg] = useState(null);
   const { currentUser } = useContext(AuthContext);
 
   const handleSend = async () => {
-    if (img) {
+    if (Img) {
       const storageRef = ref(storage, uuid());
 
-      const uploadTask = uploadBytesResumable(storageRef, img);
+      const uploadTask = uploadBytesResumable(storageRef, Img);
 
       uploadTask.on(
         (error) => {
           //TODO:Handle Error
-        },
+        }, 
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             await updateDoc(doc(db, "chats", data.chatId), {
@@ -60,7 +63,8 @@ function Randerpage() {
         }),
       });
     }
-
+    setText("");
+    setImg(null); 
     await updateDoc(doc(db, "userChats", currentUser.uid), {
       [data.chatId + ".lastMessage"]: {
         text,
@@ -75,9 +79,9 @@ function Randerpage() {
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
-    setText("");
-    setImg(null);
+    
   }
+ 
   ////////////////////////////////////////////////
   return (
     <div className={"Mainapp"}>
@@ -105,14 +109,12 @@ function Randerpage() {
             onChange={(e) => setText(e.target.value)}
             value={text} />
           <BsEmojiSmile
-            className="emoji" />
-          {/* <BsPaperclip
-            className="msg"
-           
-          /> */}
-           <input style={{ display: "none" }} type="file" id="file" />
+            className="emoji"/>
+            
+           <input style={{ display: "none" }} type="file" id="file"  onChange={e=>setImg (e.target.files[0])
+          }/>
                       <label  className="label" htmlFor="file">
-                             <img src={''} alt="" />
+                             <img src={Img} alt="" />
                         <span><BsPaperclip className="msg"/></span>
                             </label>
           <BsCaretRightSquareFill
@@ -120,7 +122,7 @@ function Randerpage() {
             onClick={handleSend}
           />
 
-        </div>
+        </div> 
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-import { inMemoryPersistence } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { ChatContext } from "../../Context/ChatContext";
@@ -18,7 +17,7 @@ const Messages = () => {
     };
   }, [data.chatId]);
 
-  // console.log(messages)
+  console.log(messages)
 
   return (
     <div className="messages">
