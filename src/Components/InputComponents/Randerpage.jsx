@@ -8,8 +8,6 @@ import { useContext,  useState } from 'react';
 import { AuthContext } from "../../Context/AuthContext";
 import { signOut } from "firebase/auth"
 import { auth } from "../../Context/firebase";
-import Emoji from "./emojis"
-import EmojiPicker from 'emoji-picker-react';
 import {
   arrayUnion,
   doc,
@@ -21,6 +19,7 @@ import { db, storage } from "../../Context/firebase"
 import { v4 as uuid } from "uuid";
 import { ChatContext } from "../../Context/ChatContext";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import EmojiPicker from "emoji-picker-react";
 function Randerpage() {
   const { data } = useContext(ChatContext);
 
@@ -81,20 +80,29 @@ function Randerpage() {
 
     
   }
- 
+  function handleKeyPress(event) {
+    if ((event.keyCode === 13)) {
+      handleSend();
+    }
+  }
   ////////////////////////////////////////////////
   return (
     <div className={"Mainapp"}>
       <Sidebar />
       <div className="col-lg-10 Rightside " id='sidebar'>
         <div className="chatuser">
-          <div className="chatusericon">
+          
+          <div className="chatusericon upericonupleft ">
             <p className="upericon" >{data.user?.displayName}</p>
+            <img className="upleft" src={data.user.photoURL} alt="" />
+           
           </div>
+       <div>
           <button
             type="button"
-            class="btn btn-danger logoutbutton"
-            onClick={() => signOut(auth)}>LogOut</button>
+            className="logoutbutton"
+            onClick={() => signOut(auth)}>...</button>
+               </div>
         </div>
         <div>
           <div >
@@ -107,10 +115,10 @@ function Randerpage() {
             class="form-control lastinputtext"
             placeholder="Type Message"
             onChange={(e) => setText(e.target.value)}
+            
             value={text} />
           <BsEmojiSmile
             className="emoji"/>
-            
            <input style={{ display: "none" }} type="file" id="file"  onChange={e=>setImg (e.target.files[0])
           }/>
                       <label  className="label" htmlFor="file">
@@ -118,8 +126,10 @@ function Randerpage() {
                         <span><BsPaperclip className="msg"/></span>
                             </label>
           <BsCaretRightSquareFill
+          type="text"
             className="msg"
             onClick={handleSend}
+            // 'onKeyPress'={handleKeyPress}
           />
 
         </div> 

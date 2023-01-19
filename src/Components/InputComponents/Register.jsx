@@ -9,7 +9,7 @@ import { createUserWithEmailAndPassword , updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { auth,  storage ,db } from "../../Context/firebase";
-import { useNavigate , Link} from "react-router-dom";
+import { useNavigate , Link, useResolvedPath} from "react-router-dom";
 
 
 function Register() {
@@ -27,8 +27,7 @@ function Register() {
             const storageRef = ref(storage, displayName);
 
             const uploadTask = uploadBytesResumable(storageRef, file);
-           console.log(Register)
-
+ 
             uploadTask.on(
                 (error) => {
                     setErr(true);
@@ -38,24 +37,28 @@ function Register() {
                          //Update profile
                         await updateProfile(res.user, {
 
-                            uid: res.user.uid,
                             displayName,
                             photoURL: downloadURL,
                         });
+                       
                           //create user on firesto
                         await setDoc(doc(db, "users", res.user.uid),
-                            {
+                            {   uid: res.user.uid,
                                 displayName,
                                 email,
                                 photoURL: downloadURL,
 
                             });
-                                        //create empty user chats on firestore
+                            navigate("/")
+                            
+                                   console.log(Register)     //create empty user chats on firestore
                         await setDoc(doc(db, "userChats", res.user.uid), {});
-                        navigate("/")
+                       
                     });
+             
                 }
             );
+            navigate("/")
         } catch (err) {
             setErr(true);
         }

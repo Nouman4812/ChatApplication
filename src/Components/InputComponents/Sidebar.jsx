@@ -4,6 +4,8 @@ import { AuthContext } from "../../Context/AuthContext";
 import React, { useState, useContext, useEffect } from "react";
 import { ChatContext } from "../../Context/ChatContext";
 import { onSnapshot } from "firebase/firestore";
+import { BsCircleFill } from "react-icons/bs";
+import onlineStatus from "./onlineStatus";
 import {
     collection,
     query,
@@ -15,6 +17,7 @@ import {
     serverTimestamp,
     getDoc,
 } from "firebase/firestore";
+import { displayName } from "react-input-emoji";
 
 function Sidebar() {
     const [chats, setChats] = useState([]);
@@ -84,11 +87,15 @@ function Sidebar() {
             const unsub = onSnapshot(collection(db, "users"), querySnapshot => {
 
                 const data = []
+                // if( currentUser.uid===user.uid ){
+                //     currentUser("")
+                // }else{
+                // }
+
 
                 querySnapshot.forEach((doc) => {
                     data.push(doc.data())
                 });
-                console.log("Chats: ", data);
                 setChats(data)
                 return () => {
                     unsub();
@@ -113,19 +120,20 @@ function Sidebar() {
     const handleSelect2 = (u) => {
         dispatch({ type: "CHANGE_USER", payload: u });
     };
-
+    console.log("chat", chats)
+    console.log("user", user)
     return (
         <div id='sidebar'>
             <div className="col-lg-12 leftside">
                 <div className="chatstext">Chats
-                    <img src={currentUser.photoURL} alt="" className="usericonrightlower" />
-                    <span className="upusername">{currentUser.displayName}</span>
+                    {/* <img src={currentUser.photoURL} alt="" className="usericonrightlower" />
+                    <span className="upusername">{currentUser.displayName}</span> */}
                 </div>
                 <div class="wrapper">
                     <BsSearch className="icon" onKeyDown={handleKey} />
                     <input class="form-control searchbar"
                         type="text"
-                        placeholder="Find a User"
+                        placeholder="Search messages or users"
                         onKeyDown={handleKey}
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
@@ -136,6 +144,7 @@ function Sidebar() {
                     {user && (
                         <div className="userChat" onClick={handleSelect}>
                             <img className="upleft" src={user.photoURL} alt="" />
+                            <span className="searchname">{user.displayName}</span>
                             <div className="userChatInfo">
                             </div>
                         </div>
@@ -148,16 +157,23 @@ function Sidebar() {
 
                         {chats.map((chat, index) => (
                             <>
-                                <div className="iconspanp userChat"
-                                    key={chat[0]}
-                                    onClick={() => handleSelect2(chat)}
-                                >
-                                    <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
-                                    <div className="lowerleftnameabout userChatInfo">
-                                        <span className="lowerleftname" >{chat.displayName}</span>
-                                        <p className="lowerabout" >{chat.lastMessage?.text}</p>
+                                {/* <div className={`${currentUser === currentUser.uid ? "offlineicon":"onlineicon"}`}>
+                            <BsCircleFill  className="offlineicon"/>
+                            <BsCircleFill  className="onlineicon"/>
+                            </div> */}
+                                {currentUser.uid == chat.uid ? null :
+                                    <div className="iconspanp userChat"
+                                        key={chat[0]}
+                                        onClick={() => handleSelect2(chat)}
+
+                                    >
+                                        <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
+                                        <div className="lowerleftnameabout userChatInfo">
+                                            <span className="lowerleftname" >{chat.displayName}</span>
+                                            <p className="lowerabout" >{chat.lastMessage?.text}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                }
                                 {/* <div>   <span className='timeleft'>05 min</span></div> */}
                             </>
                         ))}
