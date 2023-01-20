@@ -51,10 +51,12 @@ body {
   text-align: center;
   margin-top: 1rem;
   width: 17.35rem !important;
-  background-color: transparent !important;
   padding-top: 0%;
-  border: none !important;
 
+}
+.searchbar:focus{
+  border-color: rgb(38, 166, 154) !important;
+    box-shadow: 0 0 0 0.10rem rgb(38, 166, 154) !important;
 }
 
 .icon {
@@ -276,10 +278,14 @@ body {
 
 .lastinputtext {
   width: 99%;
+  height: 2.5rem;
   text-align: start;
   background-color: transparent !important;
   padding-top: 0%;
-  border: none !important;
+  border: none !important;}
+  .lastinputtext:focus {
+    border-color: rgb(38, 166, 154) !important;
+    box-shadow: 0 0 0 0.15rem rgb(38, 166, 154) !important;
 
 }
 
