@@ -19,6 +19,7 @@ const Messages = () => {
   return (
     <div className="messages">
       {messages.map((m) => (
+        console.log(messages),
         <Message  message={m} key={m.id} />
 
       

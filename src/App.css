@@ -107,7 +107,6 @@ body {
   font-size: 1rem;
   display: flex;
   justify-content: center;
-  color: rgb(38, 166, 154) !important;
 }
 
 .userChat {
@@ -136,10 +135,9 @@ body {
 }
 
 .upleft {
-    margin-top: 3%;
+  margin-top: 3%;
   border-radius: 50%;
   width: 2.2rem;
-  border-radius: 90%;
   height: 2.2rem;
 }
 
@@ -198,7 +196,7 @@ body {
 
   margin-top: 0%;
   padding-bottom: 5%;
-  padding-left: 5%;
+  padding-left: 3%;
 
 
 
@@ -313,8 +311,8 @@ body {
 }
 
 .messages {
-  min-height: 54.3rem;
-  max-height: 54.3rem;
+  min-height: 54rem;
+  max-height: 54rem;
   overflow-y: scroll;
   scrollbar-width: thin;
 
@@ -395,10 +393,15 @@ body {
   left: 8.785rem;
   justify-items: auto;
 }
+.ownername{
+  margin-right: 0.4rem;
+}
 
 .icontext {
   margin-top: 4%;
   margin-left: 5%;
+  height: 1%;
+  width: 1%;
 }
 
 .upericon {
@@ -407,9 +410,11 @@ body {
   margin-top: 0.7rem;
 }
 
-.msgfooter {
+.userfooter {
   display: flex;
+  flex-direction: row-reverse
 }
+
 
 .chatdiv {
   display: flex;
@@ -434,21 +439,26 @@ body {
   border-top: 0.6rem solid rgb(114, 105, 239);
   border-left: none;
   bottom: -1.3rem;
-  left: -0.05rem;
+  left: -0.06rem;
   justify-items: auto;
+}
+.username{
+  margin-left: 0.4rem;
 }
 
 .msgimg {
-  border-radius: 0 0 8px 8px;
+  border-radius: 0;
 }
-
+.msgimgs{
+  border-radius: 8px 8px 8px 8px;
+}
 .msgtext {
   margin-left: 0%;
 }
 
 .time {
 
-  margin-left: 55%;
+ align-self:flex-end;
   margin-top: 6%;
   font-size: 0.7rem;
 }
@@ -489,7 +499,7 @@ body {
 }
 
 #sidebar {
-  padding: 1rem;
+  padding:1rem 0 1rem 1rem;
   border-radius: 0.5rem;
   overscroll-behavior: none;
 

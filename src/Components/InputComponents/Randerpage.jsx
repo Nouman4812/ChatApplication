@@ -27,7 +27,6 @@ function Randerpage() {
   const [text, setText] = useState("");
   const [Img, setImg] = useState(null);
   const { currentUser } = useContext(AuthContext);
-
   const handleSend = async () => {
     if (Img) {
       const storageRef = ref(storage, uuid());
@@ -78,13 +77,13 @@ function Randerpage() {
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
-    
-  }
-  function handleKeyPress(event) {
-    if ((event.keyCode === 13)) {
-      handleSend();
-    }
-  }
+   
+}
+  const sendmessageOnEnter=async(e)=>{
+    if(e.key=="Enter")
+    {await handleSend()}
+       
+     }
   ////////////////////////////////////////////////
   return (
     <div className={"Mainapp"}>
@@ -115,7 +114,7 @@ function Randerpage() {
             class="form-control lastinputtext"
             placeholder="Type Message"
             onChange={(e) => setText(e.target.value)}
-            
+            onKeyUp={(e) => sendmessageOnEnter(e)}
             value={text} />
           <BsEmojiSmile
             className="emoji"/>
@@ -129,6 +128,8 @@ function Randerpage() {
           type="text"
             className="msg"
             onClick={handleSend}
+            
+
             // 'onKeyPress'={handleKeyPress}
           />
 

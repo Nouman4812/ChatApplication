@@ -126,8 +126,8 @@ function Sidebar() {
         <div id='sidebar'>
             <div className="col-lg-12 leftside">
                 <div className="chatstext">Chats
-                    {/* <img src={currentUser.photoURL} alt="" className="usericonrightlower" />
-                    <span className="upusername">{currentUser.displayName}</span> */}
+                    {/* <img src={currentUser.photoURL} alt="" className="usericonrightlower" />*/}
+                    <span className="upusername">{currentUser.displayName}</span> 
                 </div>
                 <div class="wrapper">
                     <BsSearch className="icon" onKeyDown={handleKey} />
@@ -170,11 +170,13 @@ function Sidebar() {
                                         <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
                                         <div className="lowerleftnameabout userChatInfo">
                                             <span className="lowerleftname" >{chat.displayName}</span>
-                                            <p className="lowerabout" >{chat.lastMessage?.text}</p>
+                                            <p className="lowerabout" >Hey!there I'm available</p>
+                                            
                                         </div>
+                                        <div><span className='timeleft'>05 min</span>   </div>
                                     </div>
                                 }
-                                {/* <div>   <span className='timeleft'>05 min</span></div> */}
+                               
                             </>
                         ))}
 
