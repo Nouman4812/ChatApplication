@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { ChatContext } from "../../Context/ChatContext";
-import Time from "../InputComponents/Time";
-import moment from "moment/moment";
+import toDateTime from "../InputComponents/Time";
 function Message({ message }) {
     const { currentUser } = useContext(AuthContext);
     const { data } = useContext(ChatContext);
@@ -17,8 +16,7 @@ function Message({ message }) {
             <div className={`col-md-2 ${message.senderId === currentUser.uid ? "ownerchatdiv" : "chatdiv"}`}>
                 <span className='msgtext'>{message.text}</span>
                 {message.img && <img src={message.img} alt="" className={`${message.senderId === currentUser.uid ? "msgimgs" : "msgimg"}`} />}
-                <span className='time'>{moment().format("h:mm:ss a")}</span>
-                
+                {/* <span className='time'><toDateTime/></span> */}
                 {/* <Time className='time'/> */}
             </div>
             <div className={`${message.senderId === currentUser.uid ? 'userfooter' : "ownerfooter"}`}>

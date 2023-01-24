@@ -4,8 +4,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import React, { useState, useContext, useEffect } from "react";
 import { ChatContext } from "../../Context/ChatContext";
 import { onSnapshot } from "firebase/firestore";
-import { BsCircleFill } from "react-icons/bs";
-import onlineStatus from "./onlineStatus";
+import CommonChats from "./CommonChats";
 import {
     collection,
     query,
@@ -17,8 +16,6 @@ import {
     serverTimestamp,
     getDoc,
 } from "firebase/firestore";
-import { displayName } from "react-input-emoji";
-
 function Sidebar() {
     const [chats, setChats] = useState([]);
     const [username, setUsername] = useState("");
@@ -26,7 +23,6 @@ function Sidebar() {
     const [err, setErr] = useState(false);
     const { dispatch } = useContext(ChatContext);
     const { currentUser } = useContext(AuthContext);
-
     const handleSearch = async () => {
         const q = query(
             collection(db, "users"),
@@ -39,7 +35,7 @@ function Sidebar() {
                 setUser(doc.data());
             });
         } catch (err) {
-            setErr(true);
+            setErr(true); 
         }
     };
 
@@ -67,7 +63,7 @@ function Sidebar() {
                     },
                     [combinedId + ".date"]: serverTimestamp(),
                 });
-
+                
                 await updateDoc(doc(db, "userChats", user.uid), {
                     [combinedId + ".userInfo"]: {
                         uid: currentUser.uid,
@@ -85,14 +81,7 @@ function Sidebar() {
     useEffect(() => {
         const getChats = () => {
             const unsub = onSnapshot(collection(db, "users"), querySnapshot => {
-
                 const data = []
-                // if( currentUser.uid===user.uid ){
-                //     currentUser("")
-                // }else{
-                // }
-
-
                 querySnapshot.forEach((doc) => {
                     data.push(doc.data())
                 });
@@ -101,17 +90,6 @@ function Sidebar() {
                     unsub();
                 };
             })
-            // const getChats = () => {
-            //     const unsub = onSnapshot(doc(db, "users"), (doc) => {
-
-
-            //         setChats(doc.data());
-            //     });
-
-            //     return () => {
-            //         unsub();
-            //     };
-            // })
         };
 
         currentUser.uid && getChats();
@@ -120,14 +98,12 @@ function Sidebar() {
     const handleSelect2 = (u) => {
         dispatch({ type: "CHANGE_USER", payload: u });
     };
-    console.log("chat", chats)
-    console.log("user", user)
     return (
         <div id='sidebar'>
             <div className="col-lg-12 leftside">
                 <div className="chatstext">Chats
                     {/* <img src={currentUser.photoURL} alt="" className="usericonrightlower" />*/}
-                    <span className="upusername">{currentUser.displayName}</span> 
+                    <span className="upusername">{currentUser.displayName}</span>
                 </div>
                 <div class="wrapper">
                     <BsSearch className="icon" onKeyDown={handleKey} />
@@ -140,6 +116,7 @@ function Sidebar() {
                     ></input>
                 </div>
                 <div className="leftup">
+
                     {err && <span>User not found!</span>}
                     {user && (
                         <div className="userChat" onClick={handleSelect}>
@@ -150,6 +127,8 @@ function Sidebar() {
                         </div>
                     )}
                 </div>
+                <div className="Recenttext"t>CommonChats</div>
+                <div><CommonChats/></div> 
                 {/* ///////////////////////////////////////// */}
                 <div className="Recenttext">Recent</div>
                 <div className="lefticon col-md-12">
@@ -157,11 +136,7 @@ function Sidebar() {
 
                         {chats.map((chat, index) => (
                             <>
-                                {/* <div className={`${currentUser === currentUser.uid ? "offlineicon":"onlineicon"}`}>
-                            <BsCircleFill  className="offlineicon"/>
-                            <BsCircleFill  className="onlineicon"/>
-                            </div> */}
-                                {currentUser.uid == chat.uid ? null :
+                                {currentUser.uid === chat.uid ? null :
                                     <div className="iconspanp userChat"
                                         key={chat[0]}
                                         onClick={() => handleSelect2(chat)}
@@ -171,12 +146,12 @@ function Sidebar() {
                                         <div className="lowerleftnameabout userChatInfo">
                                             <span className="lowerleftname" >{chat.displayName}</span>
                                             <p className="lowerabout" >Hey!there I'm available</p>
-                                            
+
                                         </div>
                                         <div><span className='timeleft'>05 min</span>   </div>
                                     </div>
                                 }
-                               
+
                             </>
                         ))}
 
