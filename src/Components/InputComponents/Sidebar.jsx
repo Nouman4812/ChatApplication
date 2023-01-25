@@ -3,7 +3,7 @@ import { db } from "../../Context/firebase";
 import { AuthContext } from "../../Context/AuthContext";
 import React, { useState, useContext, useEffect } from "react";
 import { ChatContext } from "../../Context/ChatContext";
-import { onSnapshot } from "firebase/firestore";
+import { collectionGroup, onSnapshot } from "firebase/firestore";
 import CommonChats from "./CommonChats";
 import {
     collection,
@@ -25,7 +25,8 @@ function Sidebar() {
     const { currentUser } = useContext(AuthContext);
     const handleSearch = async () => {
         const q = query(
-            collection(db, "users"),
+            collection(db   ,"users"),
+            collectionGroup(db, "commonchat"),
             where("displayName", "==", username)
         );
 
@@ -127,7 +128,7 @@ function Sidebar() {
                         </div>
                     )}
                 </div>
-                <div className="Recenttext"t>CommonChats</div>
+                <div className="Recenttext">CommonChats</div>
                 <div><CommonChats/></div> 
                 {/* ///////////////////////////////////////// */}
                 <div className="Recenttext">Recent</div>

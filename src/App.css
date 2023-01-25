@@ -209,11 +209,6 @@ body {
   font-size: 0.7rem;
   color: dimgray;
 }
-
-.left {
-
-}
-
 /* ////////////////////////////////////////////// */
 .Rightside {
   background-color: transparent;
@@ -429,7 +424,7 @@ body {
   color: white;
   position: relative;
   background-color: rgb(114, 105, 239);
-  width: 10% !important;
+  width: 10rem !important;
   display: flex;
   border-radius: 0.3rem 0.3rem 0.3rem 0rem;
   border: 0.1rem solid rgb(114, 105, 239);

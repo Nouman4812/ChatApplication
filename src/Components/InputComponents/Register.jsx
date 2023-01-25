@@ -4,17 +4,17 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { HiChatAlt2 } from "react-icons/hi";
 import InputComponent from "../../Components/InputComponents";
 import { useState } from "react";
-import {BsFileImage} from "react-icons/bs";
-import { createUserWithEmailAndPassword , updateProfile } from "firebase/auth";
+import { BsFileImage } from "react-icons/bs";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-import { auth,  storage ,db } from "../../Context/firebase";
-import { useNavigate , Link, useResolvedPath} from "react-router-dom";
+import { auth, storage, db } from "../../Context/firebase";
+import { useNavigate, Link, useResolvedPath } from "react-router-dom";
 
 
 function Register() {
     const [err, setErr] = useState(false);
-    const navigate  = useNavigate
+    const navigate = useNavigate
     const handleSubmit = async (e) => {
         e.preventDefault()
         const displayName = e.target[0].value;
@@ -27,35 +27,31 @@ function Register() {
             const storageRef = ref(storage, displayName);
 
             const uploadTask = uploadBytesResumable(storageRef, file);
- 
+
             uploadTask.on(
                 (error) => {
                     setErr(true);
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                         //Update profile
+                        //Update profile
                         await updateProfile(res.user, {
 
                             displayName,
                             photoURL: downloadURL,
                         });
-                       
-                          //create user on firesto
+
+                        //create user on firesto
                         await setDoc(doc(db, "users", res.user.uid),
-                            {   uid: res.user.uid,
+                            {
+                                uid: res.user.uid,
                                 displayName,
                                 email,
                                 photoURL: downloadURL,
-
                             });
-                            navigate("/")
-                            
-                                   console.log(Register)     //create empty user chats on firestore
+                        //create empty user chats on firestore
                         await setDoc(doc(db, "userChats", res.user.uid), {});
-                       
                     });
-             
                 }
             );
             navigate("/")
@@ -70,14 +66,14 @@ function Register() {
                 <h1 className='logotext'>Chatting Application</h1>
                 <div class="form-group">
                     <form onSubmit={handleSubmit}>
-                    <InputComponent type="text" placeholder="Display Name" />
+                        <InputComponent type="text" placeholder="Display Name" />
                         <InputComponent type="email" placeholder="Create a Email" />
                         <InputComponent type="password" placeholder="Set Password" />
                         <input style={{ display: "none" }} type="file" id="file" />
-                      <label  className="label" htmlFor="file">
-                             <img src={''} alt="" />
-                        <span><BsFileImage className="img"/> Add an avatar </span>
-                            </label>
+                        <label className="label" htmlFor="file">
+                            <img src={''} alt="" />
+                            <span><BsFileImage className="img" /> Add an avatar </span>
+                        </label>
                         <div class="d-grid">
                             <button class="btn btn-primary loginButton" type="submit">Sign Up</button>
                         </div>
