@@ -24,14 +24,15 @@ import {
                 ? currentUser.uid + action.payload.uid
                 : action.payload.uid + currentUser.uid,
           };
-  
+        case "CHANGE_USER":
+          return {
+            user: action.payload
+          };
         default:
           return state;
       }
     };
-  
     const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
-  
     return (
       <ChatContext.Provider value={{ data:state, dispatch }}>
         {children}

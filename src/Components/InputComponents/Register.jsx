@@ -43,7 +43,7 @@ function Register() {
 
                         //create user on firesto
                         await setDoc(doc(db, "users", res.user.uid),
-                            {
+                            {   
                                 uid: res.user.uid,
                                 displayName,
                                 email,

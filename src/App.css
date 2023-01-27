@@ -444,7 +444,9 @@ body {
 .username{
   margin-left: 0.4rem;
 }
-
+.common{
+  display: none !important;
+}
 .msgimg {
   border-radius: 0;
 }

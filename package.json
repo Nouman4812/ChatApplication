@@ -18,6 +18,7 @@
     "react-emoji": "^0.5.0",
     "react-icons": "^4.7.1",
     "react-input-emoji": "^4.3.0",
+    "react-online-status": "^0.1.0",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "react-time-picker": "^5.2.0",

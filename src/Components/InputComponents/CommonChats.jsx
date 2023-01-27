@@ -1,72 +1,65 @@
 import { BsSearch } from "react-icons/bs";
-import { db, zoLmgTttzq77EwiBP8YR } from "../../Context/firebase";
+import { db } from "../../Context/firebase";
 import { AuthContext } from "../../Context/AuthContext";
 import React, { useState, useContext, useEffect } from "react";
 import { ChatContext } from "../../Context/ChatContext";
-import { onSnapshot } from "firebase/firestore";
-
+import { collectionGroup, onSnapshot } from "firebase/firestore";
+import { v4 as uuid } from "uuid";
 import {
     collection,
+    query,
+    where,
+    getDocs,
     setDoc,
     doc,
     updateDoc,
-    serverTimestamp,
+    Timestamp,
+    arrayUnion,
     getDoc,
 } from "firebase/firestore";
 function CommonChats() {
-    const [commonchat, setcommonchat] = useState([]);
+    const [commonchats, setcommonchats] = useState([]);
+    const [Chats, setChats] = useState([]);
     const [username, setUsername] = useState("");
-    const [user, setUser] = useState();
+    const [PGmUiA2KsFoSazK2hQx4, setUser] = useState(null);
     const [err, setErr] = useState(false);
     const { dispatch } = useContext(ChatContext);
     const { currentUser } = useContext(AuthContext);
     const handleSelect = async () => {
-        //check whether the group( chats in firestore) exists, if not create
-        let ID = zoLmgTttzq77EwiBP8YR
-        const combinedId =
-            currentUser.uid > ID
-                ? currentUser.uid + ID
-                : ID + currentUser.uid;
-
+        const combinedId = "PGmUiA2KsFoSazK2hQx4"
         try {
-            const res = await getDoc(doc(db, "commonchat", combinedId));
+            const res = await getDoc(doc(db, "commonchats", combinedId));
             if (!res.exists()) {
-                //create a chat in chats collection
-                await setDoc(doc(db, "commonchat", ID), { messages: [] });
-                //create user chats
-                await updateDoc(doc(db, "chat11", currentUser.uid), {
-                    [combinedId + ".userInfo"]: {       
-                        uid:ID,
-                        displayName: user.displayName,
-                        photoURL: user.photoURL,
-                    },
-                    [
-                        combinedId + ".date"]: serverTimestamp(),
-                });
-
-                await updateDoc(doc(db, "chat11", combinedId), {
-                    [
-                        combinedId + ".userInfo"]: {
+                //create a chat in commonchats collection
+                debugger
+                await setDoc(doc(db, "commonchats", combinedId), {
+                    messages: {
                         uid: currentUser.uid,
-                        displayName: currentUser.displayName,
-                        photoURL: currentUser.photoURL,
-                    },
-                    [
-                        combinedId + ".date"]: serverTimestamp(),
+                        displayName: "Nouman",
+                        photoURL: "https://firebasestorage.googleapis.com/v0/b/my-chat125.appspot.com/o/ASLAM?alt=media&token=31785202-2609-48f6-a171-5c8878a6ece2",
+                    }
                 });
+            } else {
+                await updateDoc(doc(db, "commonchats", combinedId), {
+                    messages: arrayUnion({
+                      id: uuid(),
+                      text:"My Common Chat",
+                      senderId: currentUser.uid,
+                      date: Timestamp.now(),
+                      img:  "https://firebasestorage.googleapis.com/v0/b/my-chat125.appspot.com/o/ASLAM?alt=media&token=31785202-2609-48f6-a171-5c8878a6ece2",
+                    }),
+                  });
             }
         } catch (err) { }
-        setUser(null);
-        setUsername("")
     };
     useEffect(() => {
         const getChats = () => {
-            const unsub = onSnapshot(collection(db, "commonchat"), querySnapshot => {
-                const data = []
+            const unsub = onSnapshot(collection(db, "commonchats"), querySnapshot => {
+                const data=  []
                 querySnapshot.forEach((doc) => {
-                    data.push(doc.data())
+                    data.push(doc . data())
                 });
-                setcommonchat(data)
+                setcommonchats(data)
                 return () => {
                     unsub();
                 };
@@ -74,23 +67,41 @@ function CommonChats() {
         };
         currentUser.uid && getChats();
     }, [currentUser.uid]);
+    const handleSelect2 = (u) => {
+        dispatch({ type: "CHANGE_USER", payload: u });
+    };
+    function a(e) {
+        handleSelect(e);
+        handleSelect2(e);
+    }
     return (
-        <div>
-            {commonchat.map((chat, index) => (
-                <>
-                    {currentUser.uid === chat.uid ? null :
-                        <div className="iconspanp userChat"
-                            key={chat[0]}
-                            onClick={() => handleSelect(chat)}>
-                            <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
-                            <div className="lowerleftnameabout userChatInfo">
-                                <span className="lowerleftname" >{chat.displayName}</span>
-                                <p className="lowerabout" >common</p>
-                            </div>
-                        </div>
-                    }
-                </>
-            ))}
-        </div>)
+        <>
+            <div className="lefticon col-md-12">
+                <div className="chatusericon left chats">
+
+                    {commonchats.map((chat) => (
+                        <>
+                            {currentUser.uid === chat.uid ? null :
+                                <div className="iconspanp userChat"
+                                    key={chat[0]}
+                                    onClick={() => a(chat)}
+                                    value={username}
+                                >
+                                    <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
+                                    <div className="lowerleftnameabout userChatInfo">
+                                        <span className="lowerleftname" >{chat.displayName}</span>
+                                        <p className="lowerabout" >Common</p>
+
+                                    </div>
+                                </div>
+                            }
+                        </>
+                    ))}
+
+                </div>
+            </div>
+        </>
+    );
 }
 export default CommonChats;
+;

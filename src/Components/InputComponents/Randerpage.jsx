@@ -71,6 +71,56 @@ function Randerpage() {
   const sendmessageOnEnter = async (e) => {
     if (e.key == "Enter") { await handleSend() }
   }
+  ///////////////////////////////////////////////////////////
+  const handleSend2 = async () => {
+    if (Img) {
+      const storageRef = ref(storage, uuid());
+      const uploadTask = uploadBytesResumable(storageRef, Img);
+      uploadTask.on(
+        (error) => {
+          //TODO:Handle Error
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await updateDoc(doc(db, "commonchats", "PGmUiA2KsFoSazK2hQx4"), {
+              messages: arrayUnion({
+                id: uuid(),
+                text,
+                senderId: currentUser.uid,
+                date: Timestamp.now(),
+                img: downloadURL,
+              }),
+            });
+          });
+        }
+      );
+    } else {
+      await updateDoc(doc(db, "commonchats", "PGmUiA2KsFoSazK2hQx4"), {
+        messages: arrayUnion({
+          id: uuid(),
+          text,
+          senderId: currentUser.uid,
+          date: Timestamp.now(),
+        }),
+      });
+    }
+    setText("");
+    setImg(null);
+    await updateDoc(doc(db, "commonchats", currentUser.uid), {
+      ["PGmUiA2KsFoSazK2hQx4" + ".lastMessage"]: { text, },
+      ["PGmUiA2KsFoSazK2hQx4" + ".date"]: serverTimestamp(),
+    });
+    await updateDoc(doc(db, "commonchats", "PGmUiA2KsFoSazK2hQx4"), {
+      ["PGmUiA2KsFoSazK2hQx4" + ".lastMessage"]: {
+        text,
+      },
+      ["PGmUiA2KsFoSazK2hQx4" + ".date"]: serverTimestamp(),
+    });
+  };
+  function a(e) {
+    handleSend(e);
+    handleSend2(e);
+}
   return (
     <div className={"Mainapp"}>
       <Sidebar />
@@ -111,7 +161,7 @@ function Randerpage() {
           <BsCaretRightSquareFill
             type="text"
             className="msg"
-            onClick={handleSend} />
+            onClick={a} />
         </div>
       </div>
     </div>
