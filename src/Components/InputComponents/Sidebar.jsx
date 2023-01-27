@@ -26,7 +26,7 @@ function Sidebar() {
     const handleSearch = async () => {
         const q = query(
             collection(db, "users"),
-            
+
             where("displayName", "==", username)
         );
         try {
@@ -45,7 +45,7 @@ function Sidebar() {
     const handleSelect = async () => {
         const combinedId =
             currentUser.uid > user.uid
-                ? currentUser.uid +user.uid
+                ? currentUser.uid + user.uid
                 : user.uid + currentUser.uid
 
         try {
@@ -96,7 +96,9 @@ function Sidebar() {
     }, [currentUser.uid]);
 
     const handleSelect2 = (u) => {
+        debugger
         dispatch({ type: "CHANGE_USER", payload: u });
+        dispatch({ type: "USER_CHANGE", payload: false })
     };
     return (
         <div id='sidebar'>

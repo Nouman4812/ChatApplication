@@ -69,7 +69,7 @@ function Randerpage() {
     });
   }
   const sendmessageOnEnter = async (e) => {
-    if (e.key == "Enter") { await handleSend() }
+    if (e.key == "Enter") { await a () }
   }
   ///////////////////////////////////////////////////////////
   const handleSend2 = async () => {
@@ -120,6 +120,7 @@ function Randerpage() {
   function a(e) {
     handleSend(e);
     handleSend2(e);
+    sendmessageOnEnter(e);
 }
   return (
     <div className={"Mainapp"}>
@@ -128,7 +129,7 @@ function Randerpage() {
         <div className="chatuser">
           <div className="chatusericon upericonupleft ">
             <p className="upericon" >{data.user?.displayName}</p>
-            <img className="upleft" src={data.user.photoURL} alt="" />
+            {/* <img className="upleft" src={data.user.photoURL} alt="" /> */}
           </div>
           <div>
             <button

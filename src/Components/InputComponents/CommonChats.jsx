@@ -35,20 +35,20 @@ function CommonChats() {
                 await setDoc(doc(db, "commonchats", combinedId), {
                     messages: {
                         uid: currentUser.uid,
-                        displayName: "Nouman",
-                        photoURL: "https://firebasestorage.googleapis.com/v0/b/my-chat125.appspot.com/o/ASLAM?alt=media&token=31785202-2609-48f6-a171-5c8878a6ece2",
+                        // displayName: "Nouman",
+                        // photoURL: "https://firebasestorage.googleapis.com/v0/b/my-chat125.appspot.com/o/ASLAM?alt=media&token=31785202-2609-48f6-a171-5c8878a6ece2",
                     }
                 });
             } else {
-                await updateDoc(doc(db, "commonchats", combinedId), {
-                    messages: arrayUnion({
-                      id: uuid(),
-                      text:"My Common Chat",
-                      senderId: currentUser.uid,
-                      date: Timestamp.now(),
-                      img:  "https://firebasestorage.googleapis.com/v0/b/my-chat125.appspot.com/o/ASLAM?alt=media&token=31785202-2609-48f6-a171-5c8878a6ece2",
-                    }),
-                  });
+                // await updateDoc(doc(db, "commonchats", combinedId), {
+                //     messages: arrayUnion({
+                //       id: uuid(),
+                //       text:"",
+                //       senderId: currentUser.uid,
+                //       date: Timestamp.now(),
+                //     //   img:  "https://firebasestorage.googleapis.com/v0/b/my-chat125.appspot.com/o/ASLAM?alt=media&token=31785202-2609-48f6-a171-5c8878a6ece2",
+                //     }),
+                //   });
             }
         } catch (err) { }
     };
@@ -68,9 +68,11 @@ function CommonChats() {
         currentUser.uid && getChats();
     }, [currentUser.uid]);
     const handleSelect2 = (u) => {
-        dispatch({ type: "CHANGE_USER", payload: u });
+        dispatch({ type: "CHANGE_USERS", payload: u });
+        dispatch({ type: "USER_CHANGE", payload: true })
     };
     function a(e) {
+        debugger
         handleSelect(e);
         handleSelect2(e);
     }

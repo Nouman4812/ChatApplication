@@ -10,21 +10,25 @@ const Messages = () => {
   const { data } = useContext(ChatContext);
   // const { data } = useContext(commonChatContext);
   useEffect(() => {
-    if ( "PGmUiA2KsFoSazK2hQx4"!="PGmUiA2KsFoSazK2hQx4"  ){
- const unSubs = onSnapshot(doc(db, "commonchats", "PGmUiA2KsFoSazK2hQx4"), (doc) => {
-      doc.exists() && setMessages(doc.data().messages);
-    });
-    return () => {
-      unSubs();
-    }}
-    else{
+    debugger
+    if (data.commonUser == true) {
+      const unSubs = onSnapshot(doc(db, "commonchats", "PGmUiA2KsFoSazK2hQx4"), (doc) => {
+        doc.exists() && setMessages(doc.data().messages);
+      });
+      return () => {
+        unSubs();
+      }
+    }
+    else {
+      debugger
       const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
         doc.exists() && setMessages(doc.data().messages);
       });
       return () => {
-        unSub();}
+        unSub();
+      }
     };
-    
+
   }, [data.chatId]
     // [data.combinedId]
   );
