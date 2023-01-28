@@ -54,9 +54,10 @@ body {
   padding-top: 0%;
 
 }
-.searchbar:focus{
+
+.searchbar:focus {
   border-color: rgb(38, 166, 154) !important;
-    box-shadow: 0 0 0 0.10rem rgb(38, 166, 154) !important;
+  box-shadow: 0 0 0 0.10rem rgb(38, 166, 154) !important;
 }
 
 .icon {
@@ -102,6 +103,7 @@ body {
 
 .upusername {
   font-size: 1rem !important;
+  margin-top:7px
 
 }
 
@@ -128,6 +130,7 @@ body {
   font-size: 1.8rem;
   display: flex;
   justify-content: space-between;
+  width: 95%;
 }
 
 .leftside {
@@ -182,7 +185,7 @@ body {
 
 .lowerleftname {
   font-size: 1rem;
-
+  margin-left: 3px;
   margin-top: 0%;
 }
 
@@ -209,25 +212,29 @@ body {
   font-size: 0.7rem;
   color: dimgray;
 }
+
 /* ////////////////////////////////////////////// */
 .Rightside {
   background-color: transparent;
-
-  padding: 0rem 0rem 0rem 0.5rem;
+  padding: 0rem 1rem 0rem 1.5rem;
   justify-content: flex-end;
 
   height: 100%;
   border-radius: 5rem;
 
 }
-.upericonupleft{
+
+.upericonupleft {
   display: flex;
-  flex-direction: row-reverse !important;}
-.logoutbutton{
+  flex-direction: row-reverse !important;
+}
+
+.logoutbutton {
   border: transparent;
   font-size: 1.5rem;
   background-color: transparent;
 }
+
 .input-group {
   width: 60%;
   margin-top: 1%;
@@ -277,10 +284,12 @@ body {
   text-align: start;
   background-color: transparent !important;
   padding-top: 0%;
-  border: none !important;}
-  .lastinputtext:focus {
-    border-color: rgb(38, 166, 154) !important;
-    box-shadow: 0 0 0 0.15rem rgb(38, 166, 154) !important;
+  border: none !important;
+}
+
+.lastinputtext:focus {
+  border-color: rgb(38, 166, 154) !important;
+  box-shadow: 0 0 0 0.15rem rgb(38, 166, 154) !important;
 
 }
 
@@ -361,7 +370,7 @@ body {
 }
 
 .ownerchatdiv {
-  
+
   text-align: end;
   display: flex;
   flex-direction: column;
@@ -392,7 +401,8 @@ body {
   left: 8.785rem;
   justify-items: auto;
 }
-.ownername{
+
+.ownername {
   margin-right: 0.4rem;
 }
 
@@ -441,25 +451,30 @@ body {
   left: -0.06rem;
   justify-items: auto;
 }
-.username{
+
+.username {
   margin-left: 0.4rem;
 }
-.common{
+
+.common {
   display: none !important;
 }
+
 .msgimg {
   border-radius: 0;
 }
-.msgimgs{
+
+.msgimgs {
   border-radius: 8px 8px 8px 8px;
 }
+
 .msgtext {
   margin-left: 0%;
 }
 
 .time {
 
- align-self:flex-end;
+  align-self: flex-end;
   margin-top: 6%;
   font-size: 0.7rem;
 }
@@ -479,7 +494,7 @@ body {
   width: 2.2rem;
   border-radius: 50%;
   height: 2.2rem;
-  margin-top:8px;
+  margin-top: 8px;
 }
 
 .usericonleft {
@@ -501,9 +516,10 @@ body {
 }
 
 #sidebar {
-  padding:1rem 0 1rem 1rem;
+  padding: 1rem 0 1rem 1rem;
   border-radius: 0.5rem;
   overscroll-behavior: none;
+  background-color: floralwhite;
 
 
 }

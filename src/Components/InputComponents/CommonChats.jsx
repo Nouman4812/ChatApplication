@@ -51,7 +51,7 @@ function CommonChats() {
                                     <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Eo_circle_teal_letter-c.svg/1024px-Eo_circle_teal_letter-c.svg.png"} alt="" className="usericon" id='cursersetting' />
                                     <div className="lowerleftnameabout userChatInfo">
                                         <span className="lowerleftname" >Common</span>
-                                        <p className="lowerabout" >All users in on room :)</p>
+                                        <p className="lowerabout" >All users in one room :)</p>
 
                                     </div>
                                 </div>

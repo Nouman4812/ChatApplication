@@ -125,7 +125,7 @@ function Randerpage() {
   return (
     <div className={"Mainapp"}>
       <Sidebar />
-      <div className="col-lg-10 Rightside " id='sidebar'>
+      <div className="col-lg-10 Rightside " >
         <div className="chatuser">
           <div className="chatusericon upericonupleft ">
             <p className="upericon" >{data.user?.displayName}</p>

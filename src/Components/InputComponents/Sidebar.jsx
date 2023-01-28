@@ -128,7 +128,7 @@ function Sidebar() {
                         </div>
                     )}
                 </div>
-                <div className="Recenttext">CommonChats</div>
+                <div className="Recenttext">Common Chat Room </div>
                 <div><CommonChats /></div>
                 {/* ///////////////////////////////////////// */}
                 <div className="Recenttext">Recent</div>
