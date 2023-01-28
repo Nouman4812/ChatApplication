@@ -1,57 +1,17 @@
-import { BsSearch } from "react-icons/bs";
 import { db } from "../../Context/firebase";
 import { AuthContext } from "../../Context/AuthContext";
 import React, { useState, useContext, useEffect } from "react";
 import { ChatContext } from "../../Context/ChatContext";
-import { collectionGroup, onSnapshot } from "firebase/firestore";
-import { v4 as uuid } from "uuid";
+import { onSnapshot } from "firebase/firestore";
 import {
     collection,
-    query,
-    where,
-    getDocs,
-    setDoc,
-    doc,
-    updateDoc,
-    Timestamp,
-    arrayUnion,
-    getDoc,
 } from "firebase/firestore";
+
 function CommonChats() {
     const [commonchats, setcommonchats] = useState([]);
-    const [Chats, setChats] = useState([]);
     const [username, setUsername] = useState("");
-    const [PGmUiA2KsFoSazK2hQx4, setUser] = useState(null);
-    const [err, setErr] = useState(false);
     const { dispatch } = useContext(ChatContext);
     const { currentUser } = useContext(AuthContext);
-    const handleSelect = async () => {
-        const combinedId = "PGmUiA2KsFoSazK2hQx4"
-        try {
-            const res = await getDoc(doc(db, "commonchats", combinedId));
-            if (!res.exists()) {
-                //create a chat in commonchats collection
-                debugger
-                await setDoc(doc(db, "commonchats", combinedId), {
-                    messages: {
-                        uid: currentUser.uid,
-                        // displayName: "Nouman",
-                        // photoURL: "https://firebasestorage.googleapis.com/v0/b/my-chat125.appspot.com/o/ASLAM?alt=media&token=31785202-2609-48f6-a171-5c8878a6ece2",
-                    }
-                });
-            } else {
-                // await updateDoc(doc(db, "commonchats", combinedId), {
-                //     messages: arrayUnion({
-                //       id: uuid(),
-                //       text:"",
-                //       senderId: currentUser.uid,
-                //       date: Timestamp.now(),
-                //     //   img:  "https://firebasestorage.googleapis.com/v0/b/my-chat125.appspot.com/o/ASLAM?alt=media&token=31785202-2609-48f6-a171-5c8878a6ece2",
-                //     }),
-                //   });
-            }
-        } catch (err) { }
-    };
     useEffect(() => {
         const getChats = () => {
             const unsub = onSnapshot(collection(db, "commonchats"), querySnapshot => {
@@ -67,20 +27,14 @@ function CommonChats() {
         };
         currentUser.uid && getChats();
     }, [currentUser.uid]);
-    const handleSelect2 = (u) => {
+    const handleSelect = (u) => {
         let dataInfo = {
             displayName: "Common",
-            email: "user2@gmail.com",
-            photoURL: "https://firebasestorage.googleapis.com/v0/b/my-chat125.appspot.com/o/USER2?alt=media&token=37c7fd3a-c352-4e2d-8298-71017362636a",
-            uid: "HoKU39XVaDXHR3YAMbIIAyeF2263"
+            photoURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Eo_circle_teal_letter-c.svg/1024px-Eo_circle_teal_letter-c.svg.png",
         }
         dispatch({ type: "CHANGE_USERS", payload: dataInfo });
         dispatch({ type: "USER_CHANGE", payload: true })
     };
-    function a(e) {
-        // handleSelect(e);
-        handleSelect2(e);
-    }
     return (
         <>
             <div className="lefticon col-md-12">
@@ -91,10 +45,10 @@ function CommonChats() {
                             {currentUser.uid === chat.uid ? null :
                                 <div className="iconspanp userChat"
                                     key={chat[0]}
-                                    onClick={() => a(chat)}
+                                    onClick={() => handleSelect(chat)}
                                     value={username}
                                 >
-                                    <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
+                                    <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Eo_circle_teal_letter-c.svg/1024px-Eo_circle_teal_letter-c.svg.png"} alt="" className="usericon" id='cursersetting' />
                                     <div className="lowerleftnameabout userChatInfo">
                                         <span className="lowerleftname" >{chat.displayName}</span>
                                         <p className="lowerabout" >Common</p>
