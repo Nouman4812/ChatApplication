@@ -96,9 +96,7 @@ function Sidebar() {
     }, [currentUser.uid]);
 
     const handleSelect2 = (u) => {
-        debugger
         dispatch({ type: "CHANGE_USER", payload: u });
-        dispatch({ type: "USER_CHANGE", payload: false })
     };
     return (
         <div id='sidebar'>
