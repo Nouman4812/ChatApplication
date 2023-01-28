@@ -97,6 +97,7 @@ function Sidebar() {
 
     const handleSelect2 = (u) => {
         dispatch({ type: "CHANGE_USER", payload: u });
+        dispatch({ type: "USER_CHANGE", payload: false })
     };
     return (
         <div id='sidebar'>

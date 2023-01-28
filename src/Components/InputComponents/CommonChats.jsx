@@ -55,9 +55,9 @@ function CommonChats() {
     useEffect(() => {
         const getChats = () => {
             const unsub = onSnapshot(collection(db, "commonchats"), querySnapshot => {
-                const data=  []
+                const data = []
                 querySnapshot.forEach((doc) => {
-                    data.push(doc . data())
+                    data.push(doc.data())
                 });
                 setcommonchats(data)
                 return () => {
@@ -68,12 +68,17 @@ function CommonChats() {
         currentUser.uid && getChats();
     }, [currentUser.uid]);
     const handleSelect2 = (u) => {
-        dispatch({ type: "CHANGE_USERS", payload: u });
+        let dataInfo = {
+            displayName: "Common",
+            email: "user2@gmail.com",
+            photoURL: "https://firebasestorage.googleapis.com/v0/b/my-chat125.appspot.com/o/USER2?alt=media&token=37c7fd3a-c352-4e2d-8298-71017362636a",
+            uid: "HoKU39XVaDXHR3YAMbIIAyeF2263"
+        }
+        dispatch({ type: "CHANGE_USERS", payload: dataInfo });
         dispatch({ type: "USER_CHANGE", payload: true })
     };
     function a(e) {
-        debugger
-        handleSelect(e);
+        // handleSelect(e);
         handleSelect2(e);
     }
     return (
