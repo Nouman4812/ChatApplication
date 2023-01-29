@@ -9,20 +9,34 @@ import Loader from '../LoaderComponent/Loader'
 function LoginScreen() {
     const [err, setErr] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const email = e.target[0].value;
         const password = e.target[1].value;
-        try {
-            setLoading(true)
-            const res = await signInWithEmailAndPassword(auth, email, password);
-            setLoading(false)
+        if (password === "" && email === "") {
+            setMessage("Please enter email and password.")
+        }else
+        if (email === "") {
+            setMessage("Please enter email first.")
+        }else
+        if (password === "") {
+            setMessage("Please enter password first.")
+        }else
+         {
+            try {
+                setMessage("")
+                setLoading(true)
+                const res = await signInWithEmailAndPassword(auth, email, password);
+                setLoading(false)
 
-            navigate("/")
-        } catch (err) {
-            setErr(true);
-            setLoading(false)
+                navigate("/")
+            } catch (err) {
+                setMessage("")
+                setErr(true);
+                setLoading(false)
+            }
         }
     };
     return (
@@ -35,7 +49,6 @@ function LoginScreen() {
                     <form
                         onSubmit={handleSubmit}
                     >
-
                         <InputComponent type="email" placeholder="Username or email" />
                         <InputComponent type="password" placeholder="Password" />
                         <div class="d-grid">
@@ -43,6 +56,7 @@ function LoginScreen() {
                             <button class="btn btn-primary loginButton" type="submit" isonline="true">Sign in</button>
                         </div>
                         {err && <spna>Something went wrong</spna>}
+                        <spna>{message}</spna>
                     </form>
                     <div className='text'>
                         <p>Don't have an account?</p>

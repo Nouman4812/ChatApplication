@@ -45,6 +45,7 @@ const Search = () => {
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
         : user.uid + currentUser.uid;
+        debugger
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
 

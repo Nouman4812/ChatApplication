@@ -5,7 +5,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { ChatContext } from "../../Context/ChatContext";
 import { onSnapshot } from "firebase/firestore";
 import CommonChats from "./CommonChats";
-import { BsCircleFill } from "react-icons/bs";
 import {
     collection,
     query,
@@ -92,23 +91,10 @@ function Sidebar({setLoader}) {
     }, [currentUser.uid]);
 
     const handleSelect2 = (u) => {
+        handleSelect()
         dispatch({ type: "CHANGE_USER", payload: u });
         dispatch({ type: "USER_CHANGE", payload: false })
     };
-    // useEffect(() => {
-    //     const handleOnlineStatus = () => {
-    //         setisonline(true)
-    //     }
-    //         ;
-    //     const handleOfflineStatus = () => {
-    //         setisonline(false)
-    //     }
-    //     return () => {
-    //         window.addEventListener("online", handleOnlineStatus)
-    //         window.addEventListener("online", handleOfflineStatus)
-    //     };
-    // }, []);
-    console.log("chats",chats)
     return (
         <div id='sidebar'>
             <div className="col-lg-12 leftside">
@@ -123,6 +109,7 @@ function Sidebar({setLoader}) {
                         onKeyDown={handleKey}
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
+                        onClick={handleSelect}
                     ></input>
                 </div>
                 <div className="leftup">
@@ -153,15 +140,7 @@ function Sidebar({setLoader}) {
                                             <span className="lowerleftname" >{chat.displayName}</span>
                                             <p className="lowerabout" >Hey!there I'm available</p>
                                         </div>
-                                       <div>       
-                                       {/* {
-                                       isonline === true ?
-                                         <BsCircleFill className="onlineicon" />
-                                         :
-                                         <BsCircleFill className="offlineicon"/>
-                                         } */}
-                                        <span className='timeleft'>5min</span>
-                                       </div>
+                                       <div><span className='timeleft'>5min</span></div>
                                     </div>
                                 }
                             </>
