@@ -33,7 +33,6 @@ export const ChatContextProvider = ({ children }) => {
           chatId:"PGmUiA2KsFoSazK2hQx4",
         };
       case "USER_CHANGE":
-        debugger
         return {
           ...state,
           commonUser: action.payload

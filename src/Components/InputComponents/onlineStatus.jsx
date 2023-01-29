@@ -1,15 +1,15 @@
 // import React, { useEffect, useState } from 'react';
 // import { BsCircleFill } from "react-icons/bs";
 // function onlineStatus (){
-//   const[isOnline,setOnline]=useState(false);
-    
+//   const[currentUser,setcurrentUser]=useState(false);
+//   const { data } = useContext(ChatContext);
 //     useEffect( () =>{
 //    const handleOnlineStatus = ()=>{
 //         setOnline(true)
 //     }
 //     ;
 //  const handleOfflineStatus = () =>{
-//         setOnline(false)
+//     setcurrentUser(false)
 //     }
 //     return () => {
 //         window.addEventListener("online",handleOnlineStatus)
@@ -17,9 +17,9 @@
 //     };
 //     },[]);
 //     return (
-//         <div {`onlinestatus ${isOnline ? "onlineicon" : "offlineicon"}`}>
+//         <div className={`${data.currentUser ? "onlineicon" : "offlineicon"}`}>
 //             {
-//                 isOnline === true ? 
+//                 data.currentUser === true  ? 
 //                 <BsCircleFill className="onlineicon"/>
 //                 :
 //                 <BsCircleFill className="offlineicon"/>  
@@ -32,12 +32,3 @@
 
 //     }
 // export default onlineStatus;
-import { Offline, Online } from "react-detect-offline";
- 
-const onlineStatus = () => (
-  <div>
-    <Online  className="onlineicon">Only shown when you're online</Online>
-    <Offline className="offlineicon">Only shown offline (surprise!)</Offline>
-  </div>
-);
-export default onlineStatus;

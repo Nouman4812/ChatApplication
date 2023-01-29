@@ -4,4 +4,3 @@ function toDateTime(secs) {
     return t;
 }
 export default toDateTime;
-

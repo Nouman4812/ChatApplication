@@ -7,6 +7,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from "../../Context/AuthContext";
 import { signOut } from "firebase/auth"
 import { auth } from "../../Context/firebase";
+import Loader from '../LoaderComponent/Loader'
 import {
   arrayUnion,
   doc,
@@ -21,6 +22,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 function Randerpage() {
   const { data } = useContext(ChatContext);
   const [text, setText] = useState("");
+  const [loading, setLoading] = useState(false);
   const [Img, setImg] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const handleSend = async () => {
@@ -123,16 +125,19 @@ function Randerpage() {
     sendmessageOnEnter(e);
 }
   return (
+    <>
+      <Loader isLoading={loading} />
     <div className={"Mainapp"}>
-      <Sidebar />
+      <Sidebar setLoader={setLoading}/>
       <div className="col-lg-10 Rightside " >
         <div className="chatuser">
           <div className="chatusericon upericonupleft ">
             <p className="upericon" >{data.user?.displayName}</p>
-            {/* <img className="upleft" src={data.user.photoURL} alt="" /> */}
+            <img className="upleft" src={data.user.photoURL} alt="" />
           </div>
           <div>
             <button
+             isonline="false"
               type="button"
               className="logoutbutton"
               onClick={() => signOut(auth)}>...</button>
@@ -151,8 +156,8 @@ function Randerpage() {
             onChange={(e) => setText(e.target.value)}
             onKeyUp={(e) => sendmessageOnEnter(e)}
             value={text} />
-          <BsEmojiSmile
-            className="emoji" />
+          {/* <BsEmojiSmile
+            className="emoji" /> */}
           <input style={{ display: "none" }} type="file" id="file" onChange={e => setImg(e.target.files[0])
           } />
           <label className="label" htmlFor="file">
@@ -166,6 +171,7 @@ function Randerpage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 export default Randerpage;

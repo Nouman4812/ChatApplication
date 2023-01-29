@@ -2,7 +2,7 @@
   margin: 0%;
   display: flex;
   box-sizing: border-box;
-  height: 60.5rem;
+  height: 65rem;
   background-position: left 0 bottom 0;
   background-repeat: no-repeat;
   background-size: 330px 1000px;
@@ -44,13 +44,14 @@ body {
 
 .form-control {
   margin-top: 0%;
+  background-color: white;
 
 }
 
 .searchbar {
   text-align: center;
   margin-top: 1rem;
-  width: 17.35rem !important;
+  width: 15.40rem !important;
   padding-top: 0%;
 
 }
@@ -111,6 +112,8 @@ body {
   font-size: 1rem;
   display: flex;
   justify-content: center;
+  margin-top: 13px;
+  margin-left: 10px;
 }
 
 .userChat {
@@ -166,8 +169,7 @@ body {
 
 
 }
-
-.onlineicon {
+.offlineicon {
   height: 0.4rem;
   width: 0.4rem;
   margin-bottom: -1rem;
@@ -175,7 +177,8 @@ body {
   color: red;
 }
 
-.offlineicon {
+.onlineicon
+{
   height: 0.4rem;
   width: 0.4rem;
   margin-bottom: -1rem;
@@ -210,17 +213,15 @@ body {
 .timeleft {
   display: flex;
   font-size: 0.7rem;
+  margin-right:  5px;
   color: dimgray;
 }
-
-/* ////////////////////////////////////////////// */
 .Rightside {
-  background-color: transparent;
+  background-color:navajowhite;
   padding: 0rem 1rem 0rem 1.5rem;
   justify-content: flex-end;
-
   height: 100%;
-  border-radius: 5rem;
+  width: 100rem !important;
 
 }
 
@@ -279,10 +280,9 @@ body {
 }
 
 .lastinputtext {
-  width: 99%;
+  width: 99rem;
   height: 2.5rem;
   text-align: start;
-  background-color: transparent !important;
   padding-top: 0%;
   border: none !important;
 }
@@ -297,7 +297,8 @@ body {
   font-size: 1.8rem;
   margin-left: 1rem;
   cursor: pointer;
-  color: rgb(114, 105, 239);
+  color:rgb(38, 166, 154);
+
   margin-top: 0.3rem;
 }
 
@@ -319,8 +320,8 @@ body {
 }
 
 .messages {
-  min-height: 54rem;
-  max-height: 54rem;
+  min-height: 59rem;
+  max-height: 59rem;
   overflow-y: scroll;
   scrollbar-width: thin;
 
@@ -339,7 +340,7 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #d3cece9f;
+  background: transparent;
   border-radius: 10px;
 }
 
@@ -365,7 +366,8 @@ body {
 
 .owner {
   align-items: end;
-  margin-right: 1.5rem;
+  word-break: break-word;
+
 
 }
 
@@ -374,18 +376,18 @@ body {
   text-align: end;
   display: flex;
   flex-direction: column;
-  /* margin-left: 3rem; */
+  margin-left: 3rem;
   justify-items: auto;
   margin-top: 3rem;
-  /* color: white; */
-  color: black;
+  color: white;
+  /* color: black; */
   position: relative;
-  /* background-color: rgb(247, 247, 248); */
-  background-color: transparent;
+  background-color: gray;
+  /* background-color: transparent; */
   width: 10% !important;
   display: flex;
   border-radius: 0.3rem 0.3rem 0rem 0.3rem;
-  /* border: 0.1rem solid rgb(254, 253, 255); */
+  border: 0.1rem solid gray;
   border: transparent;
   margin-right: 3rem;
 }
@@ -394,16 +396,17 @@ body {
   content: "";
   position: absolute;
   border: 0.7rem solid transparent;
-  /* border-top: 0.6rem solid rgb(250, 250, 250); */
-  border-top: transparent;
+  border-top: 0.6rem solid gray;
+  /* border-top: transparent; */
   border-right: none;
-  bottom: -1.3rem;
-  left: 8.785rem;
+  bottom: -1.25rem;
+  left: 9rem;
   justify-items: auto;
 }
 
 .ownername {
   margin-right: 0.4rem;
+  margin-top: 6px;
 }
 
 .icontext {
@@ -426,6 +429,7 @@ body {
 
 
 .chatdiv {
+  word-break: break-word;
   display: flex;
   flex-direction: column;
   margin-left: 3rem;
@@ -464,18 +468,21 @@ body {
   border-radius: 0;
 }
 
-.msgimgs {
+/* .msgimgs {
   border-radius: 8px 8px 8px 8px;
-}
+} */
 
 .msgtext {
-  margin-left: 0%;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .time {
 
-  align-self: flex-end;
+  /* align-self: flex-end; */
   margin-top: 6%;
+  margin-left: 5px;
+  margin-right: 5px;
   font-size: 0.7rem;
 }
 
@@ -517,7 +524,6 @@ body {
 
 #sidebar {
   padding: 1rem 0 1rem 1rem;
-  border-radius: 0.5rem;
   overscroll-behavior: none;
   background-color: floralwhite;
 
@@ -549,6 +555,10 @@ body {
 }
 
 .label {
+  cursor: pointer;
+  margin-left: -6%;
+}
+.AttachAvatar {
   cursor: pointer;
 }
 

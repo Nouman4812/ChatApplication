@@ -17,7 +17,6 @@ function Message({ message }) {
                 <span className='msgtext'>{message.text}</span>
                 {message.img && <img src={message.img} alt="" className={`${message.senderId === currentUser.uid ? "msgimgs" : "msgimg"}`} />}
                 <span className='time'>05 min</span>
-                {/* <Time className='time'/> */}
             </div>
             <div className={`${message.senderId === currentUser.uid ? 'userfooter' : "ownerfooter"}`}>
                 <img src={

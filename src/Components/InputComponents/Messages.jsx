@@ -10,7 +10,6 @@ const Messages = () => {
   const { data } = useContext(ChatContext);
   // const { data } = useContext(commonChatContext);
   useEffect(() => {
-    debugger
     if (data.commonUser == true) {
       const unSubs = onSnapshot(doc(db, "commonchats", data.chatId), (doc) => {
         doc.exists() && setMessages(doc.data().messages);
@@ -20,7 +19,6 @@ const Messages = () => {
       }
     }
     else {
-      debugger
       const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
         doc.exists() && setMessages(doc.data().messages);
       });

@@ -40,7 +40,6 @@ function Register() {
                             displayName,
                             photoURL: downloadURL,
                         });
-
                         //create user on firesto
                         await setDoc(doc(db, "users", res.user.uid),
                             {   
@@ -48,13 +47,14 @@ function Register() {
                                 displayName,
                                 email,
                                 photoURL: downloadURL,
+                                isonline:true,
                             });
                         //create empty user chats on firestore
                         await setDoc(doc(db, "userChats", res.user.uid), {});
                     });
                 }
             );
-            navigate("/")
+            navigate("/login")
         } catch (err) {
             setErr(true);
         }
@@ -70,7 +70,7 @@ function Register() {
                         <InputComponent type="email" placeholder="Create a Email" />
                         <InputComponent type="password" placeholder="Set Password" />
                         <input style={{ display: "none" }} type="file" id="file" />
-                        <label className="label" htmlFor="file">
+                        <label className="AttachAvatar" htmlFor="file">
                             <img src={''} alt="" />
                             <span><BsFileImage className="img" /> Add an avatar </span>
                         </label>
