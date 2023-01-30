@@ -86,6 +86,7 @@ body {
   cursor: pointer;
 }
 
+
 .logo {
   display: flex;
   justify-content: center;
@@ -224,7 +225,7 @@ body {
 
 .logoutbutton {
   border: transparent;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   background-color: transparent;
 }
 
@@ -290,8 +291,14 @@ body {
   margin-left: 1rem;
   cursor: pointer;
   color:rgb(38, 166, 154);
-
   margin-top: 0.3rem;
+}
+.msg:hover {
+color:  rgb(114, 105, 239);
+
+}
+.logoutbutton:hover{
+  color:  rgb(114, 105, 239);
 }
 
 .emoji {
@@ -542,6 +549,9 @@ body {
 }
 .AttachAvatar {
   cursor: pointer;
+}
+.AttachAvatar:hover{
+  color: rgb(38, 166, 154)
 }
 
 .img {

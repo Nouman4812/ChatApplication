@@ -60,7 +60,7 @@ function Register() {
                                                     try {
                                                         setLoading(true)
                                                         const res = await createUserWithEmailAndPassword(auth, email, password);
-                                                      
+
                                                         const storageRef = ref(storage, displayName);
 
                                                         const uploadTask = uploadBytesResumable(storageRef, file);
@@ -68,7 +68,7 @@ function Register() {
                                                         uploadTask.on(
                                                             (error) => {
                                                                 setErr(true);
-                                                                
+
                                                             },
                                                             () => {
                                                                 getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
@@ -90,8 +90,8 @@ function Register() {
                                                                 });
                                                             }
                                                         );
-                                                          navigate('/login')
-                                                            setLoading(false)
+                                                        navigate('/login')
+                                                        setLoading(false)
                                                     } catch (err) {
                                                         setErr(true);
                                                         setLoading(false)

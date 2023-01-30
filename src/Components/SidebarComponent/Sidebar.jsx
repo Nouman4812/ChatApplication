@@ -37,7 +37,7 @@ function Sidebar({ setLoader }) {
         } catch (err) {
             setErr(true);
         }
-        handleSelect2 ()
+        handleSelect2()
     };
     const handleKey = (e) => {
         e.code === "Enter" && handleSearch();
@@ -140,7 +140,7 @@ function Sidebar({ setLoader }) {
                                         <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
                                         <div className="lowerleftnameabout userChatInfo">
                                             <span className="lowerleftname" >{chat.displayName}</span>
-                                            <p className="lowerabout" >hey!there i am  available</p>
+                                            <p className="lowerabout" >Hey!there i am  available</p>
                                         </div>
                                     </div>
                                 }

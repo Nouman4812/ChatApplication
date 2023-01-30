@@ -108,7 +108,7 @@ function Randerpage() {
           }),
         });
       }
-      
+
       setText("");
       setImg(null);
       await updateDoc(doc(db, "commonchats", currentUser.uid), {

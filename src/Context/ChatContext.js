@@ -30,7 +30,7 @@ export const ChatContextProvider = ({ children }) => {
         return {
           ...state,
           user: action.payload,
-          chatId:"PGmUiA2KsFoSazK2hQx4",
+          chatId: "PGmUiA2KsFoSazK2hQx4",
         };
       case "USER_CHANGE":
         return {

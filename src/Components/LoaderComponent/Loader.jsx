@@ -1,7 +1,7 @@
 import React from "react";
 import './loader.css'
-const Loader = ({isLoading}) => {
 
+const Loader = ({isLoading}) => {
     return (
         isLoading ==true ?
 
@@ -11,5 +11,4 @@ const Loader = ({isLoading}) => {
         :null
     );
 };
-
 export default Loader;

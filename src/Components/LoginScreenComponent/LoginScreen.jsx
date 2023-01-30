@@ -51,7 +51,7 @@ function LoginScreen() {
                         <InputComponent type="email" placeholder="Username or email" />
                         <InputComponent type="password" placeholder="Password" />
                         <div class="d-grid">
-                            <button class="btn btn-primary loginButton" type="submit" isonline="true">Sign in</button>
+                            <button class="btn btn-primary loginButton" type="submit">Sign in</button>
                         </div>
                         {err && <spna>Something went wrong</spna>}
                         <spna>{message}</spna>
@@ -67,4 +67,4 @@ function LoginScreen() {
         </div>
     );
 }
-export default LoginScreen;
+export default LoginScreen; 
