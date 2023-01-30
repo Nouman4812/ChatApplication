@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { HiChatAlt2 } from "react-icons/hi";
-import InputComponent from "../../Components/InputComponents";
+import InputComponent from "../InputComponents";
 import { useState } from "react";
 import { BsFileImage } from "react-icons/bs";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";

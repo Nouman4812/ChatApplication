@@ -4,7 +4,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import React, { useState, useContext, useEffect } from "react";
 import { ChatContext } from "../../Context/ChatContext";
 import { onSnapshot } from "firebase/firestore";
-import CommonChats from "./CommonChats";
+import CommonChats from "../CommonChatsComponents/CommonChats";
 import {
     collection,
     query,

@@ -1,5 +1,5 @@
 import { HiChatAlt2 } from "react-icons/hi";
-import InputComponent from "../../Components/InputComponents";
+import InputComponent from "../InputComponents";
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";

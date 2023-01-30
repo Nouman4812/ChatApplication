@@ -1,10 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import LoginScreen from "./Components/InputComponents/LoginScreen"
-import Randerpage from "./Components/InputComponents/Randerpage"
-import Register from './Components/InputComponents/Register';
+import LoginScreen from "./Components/LoginScreenComponent/LoginScreen"
+import Randerpage from "./Components/RenderpageComponent/Renderpage"
+import Register from './Components/RegisterComponent/Register';
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import { children, useContext } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext';
 
 function App() {

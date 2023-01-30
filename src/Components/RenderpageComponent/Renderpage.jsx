@@ -1,6 +1,6 @@
 import { BsCaretRightSquareFill, BsPaperclip } from "react-icons/bs";
-import Messages from "./Messages";
-import Sidebar from "./Sidebar";
+import Messages from "../MessagesComponent/Messages";
+import Sidebar from "../SidebarComponent/Sidebar";
 import { useContext, useState } from 'react';
 import { AuthContext } from "../../Context/AuthContext";
 import { signOut } from "firebase/auth"
