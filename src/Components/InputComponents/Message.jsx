@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { ChatContext } from "../../Context/ChatContext";
-import toDateTime from "../InputComponents/Time";
-import moment from 'moment'
+import moment from 'moment';
+
 function Message({ message }) {
     const { currentUser } = useContext(AuthContext);
     const { data } = useContext(ChatContext);

@@ -6,17 +6,18 @@ import { AuthContext } from "../../Context/AuthContext";
 import { signOut } from "firebase/auth"
 import { auth } from "../../Context/firebase";
 import Loader from '../LoaderComponent/Loader'
+import { db, storage } from "../../Context/firebase";
+import { v4 as uuid } from "uuid";
+import { ChatContext } from "../../Context/ChatContext";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import {
   arrayUnion,
   doc,
   serverTimestamp,
   Timestamp,
   updateDoc,
-} from "firebase/firestore"
-import { db, storage } from "../../Context/firebase"
-import { v4 as uuid } from "uuid";
-import { ChatContext } from "../../Context/ChatContext";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+} from "firebase/firestore";
+
 function Randerpage() {
   const { data } = useContext(ChatContext);
   const [text, setText] = useState("");
@@ -24,21 +25,19 @@ function Randerpage() {
   const [Img, setImg] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const handleSend = async () => {
-    if(text.trim() !==""){
+    if (text.trim() !== "") {
 
       if (Img) {
         const storageRef = ref(storage, uuid());
         const uploadTask = uploadBytesResumable(storageRef, Img);
         uploadTask.on(
           (error) => {
-            //TODO:Handle Error
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
               await updateDoc(doc(db, "chats", data.chatId), {
                 messages: arrayUnion({
                   id: uuid(),
-                  text,
                   senderId: currentUser.uid,
                   date: Timestamp.now(),
                   img: downloadURL,
@@ -51,9 +50,10 @@ function Randerpage() {
         await updateDoc(doc(db, "chats", data.chatId), {
           messages: arrayUnion({
             id: uuid(),
-            text,
             senderId: currentUser.uid,
             date: Timestamp.now(),
+            text,
+            lastMessage:text,
           }),
         });
       }
@@ -72,16 +72,15 @@ function Randerpage() {
     }
   }
   const sendmessageOnEnter = async (e) => {
-    if (e.key == "Enter") { await a() }
+    if (e.key == "Enter") { await a () }
   }
   const handleSend2 = async (e) => {
-    if(text.trim() !==""){
+    if (text.trim() !== "") {
       if (Img) {
         const storageRef = ref(storage, uuid());
         const uploadTask = uploadBytesResumable(storageRef, Img);
         uploadTask.on(
           (error) => {
-            //TODO:Handle Error
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
@@ -104,8 +103,8 @@ function Randerpage() {
             text,
             senderId: currentUser.uid,
             date: Timestamp.now(),
-            photoUrl:currentUser.photoURL,
-            displayName:currentUser.displayName
+            photoUrl: currentUser.photoURL,
+            displayName: currentUser.displayName
           }),
         });
       }
@@ -160,8 +159,6 @@ function Randerpage() {
               onChange={(e) => setText(e.target.value)}
               onKeyUp={(e) => sendmessageOnEnter(e)}
               value={text} />
-            {/* <BsEmojiSmile
-            className="emoji" /> */}
             <input style={{ display: "none" }} type="file" id="file" onChange={e => setImg(e.target.files[0])
             } />
             <label className="label" htmlFor="file">

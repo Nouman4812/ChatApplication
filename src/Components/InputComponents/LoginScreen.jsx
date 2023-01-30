@@ -17,27 +17,26 @@ function LoginScreen() {
         const password = e.target[1].value;
         if (password === "" && email === "") {
             setMessage("Please enter email and password.")
-        }else
-        if (email === "") {
-            setMessage("Please enter email first.")
-        }else
-        if (password === "") {
-            setMessage("Please enter password first.")
-        }else
-         {
-            try {
-                setMessage("")
-                setLoading(true)
-                const res = await signInWithEmailAndPassword(auth, email, password);
-                setLoading(false)
+        } else
+            if (email === "") {
+                setMessage("Please enter email first.")
+            } else
+                if (password === "") {
+                    setMessage("Please enter password first.")
+                } else {
+                    try {
+                        setMessage("")
+                        setLoading(true)
+                        const res = await signInWithEmailAndPassword(auth, email, password);
+                        setLoading(false)
 
-                navigate("/")
-            } catch (err) {
-                setMessage("")
-                setErr(true);
-                setLoading(false)
-            }
-        }
+                        navigate("/")
+                    } catch (err) {
+                        setMessage("")
+                        setErr(true);
+                        setLoading(false)
+                    }
+                }
     };
     return (
         <div className="container ">
@@ -52,7 +51,6 @@ function LoginScreen() {
                         <InputComponent type="email" placeholder="Username or email" />
                         <InputComponent type="password" placeholder="Password" />
                         <div class="d-grid">
-
                             <button class="btn btn-primary loginButton" type="submit" isonline="true">Sign in</button>
                         </div>
                         {err && <spna>Something went wrong</spna>}

@@ -1,14 +1,11 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
-// import { CurrencyBitcoin } from "react-bootstrap-icons";
 import { ChatContext } from "../../Context/ChatContext";
-// import { commonChatContext } from "../../Context/CommonContext"
 import { db } from "../../Context/firebase";
 import Message from "./Message.jsx"
 const Messages = () => {
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
-  // const { data } = useContext(commonChatContext);
   useEffect(() => {
     if (data.commonUser == true) {
       const unSubs = onSnapshot(doc(db, "commonchats", data.chatId), (doc) => {
@@ -26,9 +23,7 @@ const Messages = () => {
         unSub();
       }
     };
-
   }, [data.chatId]
-    // [data.combinedId]
   );
   return (
     <div className="messages">
@@ -38,5 +33,4 @@ const Messages = () => {
     </div>
   );
 };
-
 export default Messages;

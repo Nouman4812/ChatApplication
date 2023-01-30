@@ -39,9 +39,7 @@ function CommonChats() {
         <>
             <div className="lefticon col-md-12">
                 <div className="chatusericon left chats">
-
                     {commonchats.map((chat) => (
-                        
                         <>
                             {currentUser.uid === chat.uid ? null :
                                 <div className="iconspanp userChat"
@@ -53,7 +51,6 @@ function CommonChats() {
                                     <div className="lowerleftnameabout userChatInfo">
                                         <span className="lowerleftname" >Common</span>
                                         <p className="lowerabout" >All users in one room :)</p>
-
                                     </div>
                                 </div>
                             }

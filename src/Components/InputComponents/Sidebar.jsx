@@ -16,6 +16,7 @@ import {
     serverTimestamp,
     getDoc,
 } from "firebase/firestore";
+
 function Sidebar({setLoader}) {
     const [isonline,setisonline]=useState(false);
     const [chats, setChats] = useState([]);
@@ -55,6 +56,7 @@ function Sidebar({setLoader}) {
                         uid: user.uid,
                         displayName: user.displayName,
                         photoURL: user.photoURL,
+                        lastMessage:user.lastMessage,
                     },
                     [combinedId + ".date"]: serverTimestamp(),
                 });
@@ -63,6 +65,7 @@ function Sidebar({setLoader}) {
                         uid: currentUser.uid,
                         displayName: currentUser.displayName,
                         photoURL: currentUser.photoURL,
+                        lastMessage:currentUser.lastMessage,
                     },
                     [combinedId + ".date"]: serverTimestamp(),
                 });
@@ -138,7 +141,8 @@ function Sidebar({setLoader}) {
                                         <img src={chat.photoURL} alt="" className="usericon" id='cursersetting' />
                                         <div className="lowerleftnameabout userChatInfo">
                                             <span className="lowerleftname" >{chat.displayName}</span>
-                                            <p className="lowerabout" >Hey!there I'm available</p>
+                                            <p className="lowerabout" >hey!there i am  available</p>
+                                              {/* <p className="lowerabout" >{chat.lastMessage}</p> */}
                                         </div>
                                        <div><span className='timeleft'>5min</span></div>
                                     </div>
