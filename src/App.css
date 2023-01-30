@@ -2,7 +2,7 @@
   margin: 0%;
   display: flex;
   box-sizing: border-box;
-  height: 65rem;
+  height: 67.2rem;
   background-position: left 0 bottom 0;
   background-repeat: no-repeat;
   background-size: 330px 1000px;
@@ -120,14 +120,6 @@ body {
   display: flex;
 }
 
-/* /////////////////////////////////////////////// */
-/* .container2{
-    display: flex;
-    padding: 1% 1% 0  1%;
-  
-} */
-/* /////////////////////////////////////////////// */
-
 .chatstext {
   font: bold;
   font-size: 1.8rem;
@@ -221,7 +213,7 @@ body {
   padding: 0rem 1rem 0rem 1.5rem;
   justify-content: flex-end;
   height: 100%;
-  width: 100rem !important;
+  width: 87.5% !important;
 
 }
 
@@ -320,8 +312,8 @@ body {
 }
 
 .messages {
-  min-height: 59rem;
-  max-height: 59rem;
+  min-height: 60.1rem;
+  max-height: 60.1rem;
   overflow-y: scroll;
   scrollbar-width: thin;
 
@@ -331,20 +323,15 @@ body {
   width: 5px;
   padding: 0%;
 }
-
-/* Track */
 ::-webkit-scrollbar-track {
   box-shadow: transparent;
   border-radius: 10px;
 }
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: transparent;
   border-radius: 10px;
 }
 
-/* ///////////////////////////////////////// */
 .container3 {
   display: flex;
 
@@ -360,7 +347,6 @@ body {
 .message {
   display: flex;
   flex-direction: column;
-  /* height: 42rem; */
   overflow: auto;
 }
 
@@ -368,11 +354,9 @@ body {
   align-items: end;
   word-break: break-word;
 
-
 }
 
 .ownerchatdiv {
-
   text-align: end;
   display: flex;
   flex-direction: column;
@@ -380,10 +364,8 @@ body {
   justify-items: auto;
   margin-top: 3rem;
   color: white;
-  /* color: black; */
   position: relative;
   background-color: gray;
-  /* background-color: transparent; */
   width: 10% !important;
   display: flex;
   border-radius: 0.3rem 0.3rem 0rem 0.3rem;
@@ -397,10 +379,9 @@ body {
   position: absolute;
   border: 0.7rem solid transparent;
   border-top: 0.6rem solid gray;
-  /* border-top: transparent; */
   border-right: none;
   bottom: -1.25rem;
-  left: 9rem;
+  left: 10.64rem;
   justify-items: auto;
 }
 
@@ -481,8 +462,8 @@ body {
 
   /* align-self: flex-end; */
   margin-top: 6%;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 12px;
+  margin-right: 12px;
   font-size: 0.7rem;
 }
 
@@ -495,6 +476,7 @@ body {
 
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 }
 
 .usericon {

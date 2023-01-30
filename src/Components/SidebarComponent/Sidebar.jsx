@@ -18,7 +18,6 @@ import {
 } from "firebase/firestore";
 
 function Sidebar({setLoader}) {
-    const [isonline,setisonline]=useState(false);
     const [chats, setChats] = useState([]);
     const [username, setUsername] = useState("");
     const [user, setUser] = useState(null);
@@ -79,6 +78,7 @@ function Sidebar({setLoader}) {
         setLoader(true)
         const getChats = () => {
             const unsub = onSnapshot(collection(db, "users"), querySnapshot => {
+
                 const data = []
                 querySnapshot.forEach((doc) => {
                     data.push(doc.data())
@@ -94,7 +94,7 @@ function Sidebar({setLoader}) {
     }, [currentUser.uid]);
 
     const handleSelect2 = (u) => {
-        handleSelect()
+        handleSelect ();
         dispatch({ type: "CHANGE_USER", payload: u });
         dispatch({ type: "USER_CHANGE", payload: false })
     };
@@ -142,9 +142,7 @@ function Sidebar({setLoader}) {
                                         <div className="lowerleftnameabout userChatInfo">
                                             <span className="lowerleftname" >{chat.displayName}</span>
                                             <p className="lowerabout" >hey!there i am  available</p>
-                                              {/* <p className="lowerabout" >{chat.lastMessage}</p> */}
                                         </div>
-                                       <div><span className='timeleft'>5min</span></div>
                                     </div>
                                 }
                             </>

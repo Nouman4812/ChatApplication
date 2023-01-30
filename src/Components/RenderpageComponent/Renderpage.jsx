@@ -153,6 +153,7 @@ function Randerpage() {
           </div>
           <div className="lastdiv">
             <input
+             maxlength = "150"
               type="text"
               class="form-control lastinputtext"
               placeholder="Type Message"
