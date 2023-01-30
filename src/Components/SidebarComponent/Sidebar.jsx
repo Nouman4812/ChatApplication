@@ -17,7 +17,7 @@ import {
     getDoc,
 } from "firebase/firestore";
 
-function Sidebar({setLoader}) {
+function Sidebar({ setLoader }) {
     const [chats, setChats] = useState([]);
     const [username, setUsername] = useState("");
     const [user, setUser] = useState(null);
@@ -37,15 +37,16 @@ function Sidebar({setLoader}) {
         } catch (err) {
             setErr(true);
         }
+        handleSelect2 ()
     };
     const handleKey = (e) => {
         e.code === "Enter" && handleSearch();
     };
-    const handleSelect = async () => {
+    const handleSelect = async (u) => {
         const combinedId =
-            currentUser.uid > user.uid
-                ? currentUser.uid + user.uid
-                : user.uid + currentUser.uid
+            currentUser.uid > u.uid
+                ? currentUser.uid + u.uid
+                : u.uid + currentUser.uid
         try {
             const res = await getDoc(doc(db, "chats", combinedId));
             if (!res.exists()) {
@@ -55,7 +56,7 @@ function Sidebar({setLoader}) {
                         uid: user.uid,
                         displayName: user.displayName,
                         photoURL: user.photoURL,
-                        lastMessage:user.lastMessage,
+                        lastMessage: user.lastMessage,
                     },
                     [combinedId + ".date"]: serverTimestamp(),
                 });
@@ -64,13 +65,12 @@ function Sidebar({setLoader}) {
                         uid: currentUser.uid,
                         displayName: currentUser.displayName,
                         photoURL: currentUser.photoURL,
-                        lastMessage:currentUser.lastMessage,
+                        lastMessage: currentUser.lastMessage,
                     },
                     [combinedId + ".date"]: serverTimestamp(),
                 });
             }
         } catch (err) { }
-
         setUser(null);
         setUsername("")
     };
@@ -94,7 +94,7 @@ function Sidebar({setLoader}) {
     }, [currentUser.uid]);
 
     const handleSelect2 = (u) => {
-        handleSelect ();
+        handleSelect(u);
         dispatch({ type: "CHANGE_USER", payload: u });
         dispatch({ type: "USER_CHANGE", payload: false })
     };
@@ -105,14 +105,14 @@ function Sidebar({setLoader}) {
                     <span className="upusername">{currentUser.displayName}</span>
                 </div>
                 <div class="wrapper">
-                    <BsSearch className="icon" onKeyDown={handleKey} />
+                    <BsSearch className="icon" onKeyDown={(e) => handleKey(e)} />
                     <input class="form-control searchbar"
                         type="text"
                         placeholder="Search messages or users"
-                        onKeyDown={handleKey}
+                        onKeyDown={(e) => handleKey(e)}
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
-                        onClick={handleSelect}
+                        onClick={(e) => handleSelect(e)}
                     ></input>
                 </div>
                 <div className="leftup">
@@ -121,7 +121,6 @@ function Sidebar({setLoader}) {
                         <div className="userChat" onClick={handleSelect}>
                             <img className="upleft" src={user.photoURL} alt="" />
                             <span className="searchname">{user.displayName}</span>
-                     
                             <div className="userChatInfo">
                             </div>
                         </div>

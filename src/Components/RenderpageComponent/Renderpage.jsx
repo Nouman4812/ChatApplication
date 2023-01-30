@@ -53,7 +53,7 @@ function Randerpage() {
             senderId: currentUser.uid,
             date: Timestamp.now(),
             text,
-            lastMessage:text,
+            lastMessage: text,
           }),
         });
       }
@@ -72,7 +72,7 @@ function Randerpage() {
     }
   }
   const sendmessageOnEnter = async (e) => {
-    if (e.key == "Enter") { await a () }
+    if (e.key == "Enter") { await a() }
   }
   const handleSend2 = async (e) => {
     if (text.trim() !== "") {
@@ -108,6 +108,7 @@ function Randerpage() {
           }),
         });
       }
+      
       setText("");
       setImg(null);
       await updateDoc(doc(db, "commonchats", currentUser.uid), {
@@ -123,9 +124,11 @@ function Randerpage() {
     }
   };
   function a(e) {
-    handleSend(e);
-    handleSend2(e);
-    sendmessageOnEnter(e);
+    if (data.commonUser == true) {
+      handleSend2(e);
+    } else {
+      handleSend(e);
+    }
   }
   return (
     <>
@@ -153,7 +156,7 @@ function Randerpage() {
           </div>
           <div className="lastdiv">
             <input
-             maxlength = "150"
+              maxlength="150"
               type="text"
               class="form-control lastinputtext"
               placeholder="Type Message"
