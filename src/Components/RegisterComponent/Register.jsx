@@ -121,7 +121,7 @@ function Register() {
                         <spna>{message}</spna>
                     </form>
                     <div className='text'>
-                        <p>Don't have an account?</p>
+                        <p>Do have an account?</p>
                     </div>
                     <div className='text1'>
                         <span><Link to="/login">Login</Link></span>

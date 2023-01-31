@@ -134,12 +134,20 @@ body {
 
 
 }
+.rightsideupimgicon{
+  border-radius: 50%;
+  width: 2.1rem;
+  height: 2.1rem;
 
+}
+.rightsideupimgicon:hover{
+  background-color: rgb(211, 34, 34);
+}
 .upleft {
   margin-top: 3%;
   border-radius: 50%;
   width: 2.2rem;
-  height: 2.2rem;
+  height: 2.1rem;
 }
 
 .common {
@@ -386,7 +394,7 @@ color:  rgb(114, 105, 239);
   border-top: 0.6rem solid gray;
   border-right: none;
   bottom: -1.25rem;
-  left: 10.6rem;
+  left: 10.69rem;
   justify-items: auto;
 }
 
@@ -406,6 +414,7 @@ color:  rgb(114, 105, 239);
   margin-left: 4%;
   display: inline-flex;
   margin-top: 0.7rem;
+  
 }
 
 .userfooter {

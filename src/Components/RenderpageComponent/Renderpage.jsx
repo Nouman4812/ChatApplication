@@ -140,7 +140,7 @@ function Randerpage() {
           <div className="chatuser">
             <div className="chatusericon upericonupleft ">
               <p className="upericon" >{data.user?.displayName}</p>
-              <img className="upleft" src={data.user.photoURL} alt="" />
+              <img className="rightsideupimgicon"  src={data.user.photoURL} alt="" />
             </div>
             <div>
               <button
@@ -160,7 +160,7 @@ function Randerpage() {
               maxlength="150"
               type="text"
               class="form-control lastinputtext"
-              placeholder="Type Message"
+              placeholder="Type  a new message"
               onChange={(e) => setText(e.target.value)}
               onKeyUp={(e) => sendmessageOnEnter(e)}
               value={text} />

@@ -105,8 +105,9 @@ function Sidebar({ setLoader }) {
                 <div class="wrapper">
                     <BsSearch className="icon" onKeyDown={(e) => handleKey(e)} />
                     <input class="form-control searchbar"
+                    maxlength="20"
                         type="text"
-                        placeholder="Search messages or users"
+                        placeholder="Search sers"
                         onKeyDown={(e) => handleKey(e)}
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
