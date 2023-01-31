@@ -16,7 +16,6 @@ import {
     serverTimestamp,
     getDoc,
 } from "firebase/firestore";
-
 function Sidebar({ setLoader }) {
     const [chats, setChats] = useState([]);
     const [username, setUsername] = useState("");
@@ -37,7 +36,6 @@ function Sidebar({ setLoader }) {
         } catch (err) {
             setErr(true);
         }
-        handleSelect2()
     };
     const handleKey = (e) => {
         e.code === "Enter" && handleSearch();

@@ -159,8 +159,6 @@ body {
   margin-top: 5%;
   margin-left: 0%;
 
-
-
 }
 .offlineicon {
   height: 0.4rem;
@@ -388,7 +386,7 @@ color:  rgb(114, 105, 239);
   border-top: 0.6rem solid gray;
   border-right: none;
   bottom: -1.25rem;
-  left: 10.64rem;
+  left: 10.6rem;
   justify-items: auto;
 }
 
@@ -456,9 +454,9 @@ color:  rgb(114, 105, 239);
   border-radius: 0;
 }
 
-/* .msgimgs {
-  border-radius: 8px 8px 8px 8px;
-} */
+.msgimgs {
+  border-radius: 0px 0px 0px 0px;
+}
 
 .msgtext {
   margin-left: 5px;

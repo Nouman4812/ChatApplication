@@ -22,14 +22,14 @@ function Randerpage() {
   const { data } = useContext(ChatContext);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
-  const [Img, setImg] = useState(null);
+  const [img, setImg] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const handleSend = async () => {
     if (text.trim() !== "") {
 
-      if (Img) {
+      if (img) {
         const storageRef = ref(storage, uuid());
-        const uploadTask = uploadBytesResumable(storageRef, Img);
+        const uploadTask = uploadBytesResumable(storageRef, img);
         uploadTask.on(
           (error) => {
           },
@@ -38,6 +38,7 @@ function Randerpage() {
               await updateDoc(doc(db, "chats", data.chatId), {
                 messages: arrayUnion({
                   id: uuid(),
+                  text,
                   senderId: currentUser.uid,
                   date: Timestamp.now(),
                   img: downloadURL,
@@ -50,17 +51,17 @@ function Randerpage() {
         await updateDoc(doc(db, "chats", data.chatId), {
           messages: arrayUnion({
             id: uuid(),
+            text,
             senderId: currentUser.uid,
             date: Timestamp.now(),
-            text,
-            lastMessage: text,
           }),
         });
       }
       setText("");
       setImg(null);
       await updateDoc(doc(db, "userChats", currentUser.uid), {
-        [data.chatId + ".lastMessage"]: { text, },
+        [data.chatId + ".lastMessage"]: { text, 
+        },
         [data.chatId + ".date"]: serverTimestamp(),
       });
       await updateDoc(doc(db, "userChats", data.user.uid), {
@@ -76,9 +77,9 @@ function Randerpage() {
   }
   const handleSend2 = async (e) => {
     if (text.trim() !== "") {
-      if (Img) {
+      if (img) {
         const storageRef = ref(storage, uuid());
-        const uploadTask = uploadBytesResumable(storageRef, Img);
+        const uploadTask = uploadBytesResumable(storageRef, img);
         uploadTask.on(
           (error) => {
           },
@@ -90,7 +91,7 @@ function Randerpage() {
                   text,
                   senderId: currentUser.uid,
                   date: Timestamp.now(),
-                  photoURL: downloadURL,
+                  img: downloadURL,
                 }),
               });
             });
@@ -166,7 +167,7 @@ function Randerpage() {
             <input style={{ display: "none" }} type="file" id="file" onChange={e => setImg(e.target.files[0])
             } />
             <label className="label" htmlFor="file">
-              <img src={Img} alt="" />
+              <img src={img} alt="" />
               <span><BsPaperclip className="msg" /></span>
             </label>
             <BsCaretRightSquareFill
