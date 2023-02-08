@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+}
+.inputDataField {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.inputage {
+  margin-bottom: 0.5%;
+  height: 1.5rem;
+  width: 15rem;
+}
+.inputWeight {
+  margin-bottom: 0.5%;
+  height: 1.5rem;
+  width: 15rem;
+}
+
+.submitbutton {
+  cursor: pointer;
+}
+.submitbutton:hover {
+  background-color: rgb(95, 86, 74);
+}

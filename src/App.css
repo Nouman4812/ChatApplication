@@ -99,7 +99,6 @@ body {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
-
   margin-top: 2%;
 }
 
@@ -132,7 +131,6 @@ body {
 .leftside {
   background-color: transparent;
 
-
 }
 .rightsideupimgicon{
   border-radius: 50%;
@@ -140,8 +138,13 @@ body {
   height: 2.1rem;
 
 }
-.rightsideupimgicon:hover{
-  background-color: rgb(211, 34, 34);
+.testforprofile{
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+}
+.test{
+  display: contents;
 }
 .upleft {
   margin-top: 3%;
@@ -154,11 +157,11 @@ body {
   margin-left: 10%;
   margin-top: 0%;
 
-
 }
 
 .Recenttext {
   font: bold;
+
   font-size: 1.4rem;
   margin-top: 2%;
 }
@@ -204,8 +207,6 @@ body {
   margin-top: 0%;
   padding-bottom: 5%;
   padding-left: 3%;
-
-
 
 }
 
@@ -422,7 +423,6 @@ color:  rgb(114, 105, 239);
   flex-direction: row-reverse
 }
 
-
 .chatdiv {
   word-break: break-word;
   display: flex;
@@ -474,7 +474,6 @@ color:  rgb(114, 105, 239);
 
 .time {
 
-  /* align-self: flex-end; */
   margin-top: 6%;
   margin-left: 12px;
   margin-right: 12px;
@@ -532,6 +531,13 @@ color:  rgb(114, 105, 239);
   height: 2.2rem;
 }
 
+.profileimage
+{
+  width: 5rem;
+  border-radius: 50%;
+  height: 5rem;
+
+}
 .lastnameright {
 
   padding-right: 1%;
@@ -545,7 +551,6 @@ color:  rgb(114, 105, 239);
   color: dimgray;
   font-size: 0.8rem;
 }
-
 .texttime {
   padding-bottom: 1rem;
 }
